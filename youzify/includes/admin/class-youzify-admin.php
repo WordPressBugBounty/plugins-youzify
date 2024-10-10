@@ -1333,7 +1333,7 @@ class Youzify_Admin {
 			}
 
 			if ( $status == 'expired' ) {
-		    	echo '<a href="https://www.kainelabs.com/checkout/?edd_license_key=' . $license . '&download_id=' . $args['product_id'] . '">' . __( 'Renew License with 30% OFF.', 'youzify' ) . '</a>';
+		    	echo '<a href="https://www.youzify.com/checkout/?edd_license_key=' . $license . '&download_id=' . $args['product_id'] . '">' . __( 'Renew License with 30% OFF.', 'youzify' ) . '</a>';
 			}
 
 			echo '</div>';
@@ -1359,7 +1359,7 @@ class Youzify_Admin {
 			'url'        => home_url()
 		);
 
-		$args = apply_filters( 'youzify_addons_request_args', array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+		$args = apply_filters( 'youzify_addons_request_args', array( 'timeout' => 60, 'sslverify' => false, 'body' => $api_params ) );
 
 		// Call the custom API.
 		$response = wp_remote_post( YOUZIFY_STORE_URL, $args );
@@ -1381,12 +1381,12 @@ class Youzify_Admin {
 
 				switch( $license_data->error ) {
 
-					// case 'expired' :
-					// 	$message = sprintf(
-					// 		__( 'Your license key expired on %s.', 'youzify' ),
-					// 		date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
-					// 	);
-					// 	break;
+					case 'expired' :
+						$message = sprintf(
+							__( 'Your license key expired on %s.', 'youzify' ),
+							date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
+						);
+						break;
 
 					case 'disabled' :
 					case 'revoked' :

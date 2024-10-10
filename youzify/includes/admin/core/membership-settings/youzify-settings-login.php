@@ -350,6 +350,6 @@ function youzify_get_panel_pages() {
     foreach ( get_pages() as $page ) {
         $pages[ $page->ID ] = sprintf( __( '%1s ( ID : %2d )', 'youzify' ), $page->post_title, $page->ID );
     }
-
+    
     return $pages;
 }

@@ -100,8 +100,9 @@ class Youzify_Woocommerce {
 		}
 
 		global $wp_admin_bar, $bp;
-
-		if ( ! bp_use_wp_admin_bar() || defined( 'DOING_AJAX' ) ) {
+// ! bp_use_wp_admin_bar() ||
+		
+		if ( defined( 'DOING_AJAX' ) ) {
 			return;
 		}
 

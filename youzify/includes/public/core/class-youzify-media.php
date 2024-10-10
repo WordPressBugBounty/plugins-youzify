@@ -187,12 +187,12 @@ class Youzify_Media {
         }
 
         foreach ( $photos as $photo ) : ?>
-            <div data-item-id="<?php echo $photo['id']; ?>" class="youzify-media-item">
+            <div data-item-id="<?php echo esc_attr( $photo['id'] ); ?>" class="youzify-media-item">
                 <div class="youzify-media-item-img" >
                     <img loading="lazy" <?php echo youzify_get_image_attributes( $photo['media_id'], 'youzify-thumbnail', 'media-photos' ); ?> alt="">
                     <div class="youzify-media-item-tools">
-                        <a href="<?php echo bp_activity_get_permalink( $photo['item_id'] );?>"><i class="fas fa-link youzify-media-post-link"></i></a>
-                        <a data-youzify-lightbox="youzify-media-lightbox<?php if ( isset( $args['box'] ) ) echo '-' . $args['box']; ?>" href="<?php echo wp_get_attachment_url( $photo['media_id'] ); ?>"><i class="fas fa-search youzify-media-zoom-photo"></i></a>
+                        <a href="<?php echo esc_url( bp_activity_get_permalink( $photo['item_id'] ) );?>"><i class="fas fa-link youzify-media-post-link"></i></a>
+                        <a data-youzify-lightbox="youzify-media-lightbox<?php if ( isset( $args['box'] ) ) echo '-' . esc_attr( $args['box'] ); ?>" href="<?php echo esc_url( wp_get_attachment_url( $photo['media_id'] ) ); ?>"><i class="fas fa-search youzify-media-zoom-photo"></i></a>
                     </div>
                 </div>
                 <?php do_action( 'youzify_after_media_item', $photo['media_id'], $args ); ?>
@@ -263,10 +263,10 @@ class Youzify_Media {
 
         	<div class="youzify-media-item">
         	<?php if ( $thumbnail_type == 'image' ) : ?>
-        		<div data-activity-id="<?php echo $video['item_id']; ?>" class="youzify-media-item-content">
-                    <div class="youzify-media-item-img youzify-<?php echo $src['provider']; ?>-item"><img loading="lazy" <?php echo $thumbnail; ?> alt=""><?php if ( $src['provider'] == 'local' ) echo '<i class="fas fa-play-circle youzify-media-local-video"></i>'; ?><div class="youzify-media-item-tools"><a href="<?php echo bp_activity_get_permalink( $video['item_id'] );?>"><i class="fas fa-link youzify-media-post-link"></i></a><a class="youzify-video-lightbox" data-<?php echo $this->get_video_data( $src['provider'] ); ?>="<?php echo $src['id']; ?>"><i class="fas fa-play-circle youzify-media-video-play"></i></a></div></div></div>
+        		<div data-activity-id="<?php echo esc_attr( $video['item_id'] ); ?>" class="youzify-media-item-content">
+                    <div class="youzify-media-item-img youzify-<?php echo esc_attr( $src['provider'] ); ?>-item"><img loading="lazy" <?php echo $thumbnail; ?> alt=""><?php if ( $src['provider'] == 'local' ) echo '<i class="fas fa-play-circle youzify-media-local-video"></i>'; ?><div class="youzify-media-item-tools"><a href="<?php echo bp_activity_get_permalink( $video['item_id'] );?>"><i class="fas fa-link youzify-media-post-link"></i></a><a class="youzify-video-lightbox" data-<?php echo $this->get_video_data( $src['provider'] ); ?>="<?php echo $src['id']; ?>"><i class="fas fa-play-circle youzify-media-video-play"></i></a></div></div></div>
         	<?php else : ?>
-            	<div data-activity-id="<?php echo $video['item_id']; ?>" class="youzify-media-item-content"><div class="youzify-media-item-video"><video width="100%" controls preload="metadata"><source class="lazyload" src="<?php echo wp_get_attachment_url( $video['media_id'] ); ?>" type="video/mp4"><?php _e( 'Your browser does not support the video tag.', 'youzify' ); ?></video></div></div>
+            	<div data-activity-id="<?php echo esc_attr( $video['item_id'] ); ?>" class="youzify-media-item-content"><div class="youzify-media-item-video"><video width="100%" controls preload="metadata"><source class="lazyload" src="<?php echo wp_get_attachment_url( $video['media_id'] ); ?>" type="video/mp4"><?php _e( 'Your browser does not support the video tag.', 'youzify' ); ?></video></div></div>
         	<?php endif; ?>
             <?php do_action( 'youzify_after_media_item', $video['media_id'], $args ); ?>
         	</div>
@@ -374,18 +374,18 @@ class Youzify_Media {
 
         	<div class="youzify-media-item">
 
-				<a class="youzify-media-content" data-activity-id="<?php echo $file['item_id']; ?>" href="<?php echo bp_activity_get_permalink( $file['item_id'] );?>">
+				<a class="youzify-media-content" data-activity-id="<?php echo esc_attr( $file['item_id'] ); ?>" href="<?php echo esc_url( bp_activity_get_permalink( $file['item_id'] ) );?>">
 					<div class="youzify-media-content-inner">
 						<div class="youzify-media-icon"><i class="fas fa-cloud-download-alt youzify-file-icon"></i></div>
                         <div class="youzify-media-head-area">
-    						<div class="youzify-media-title" title="<?php echo $data['real_name']; ?>"><?php echo $data['real_name']; ?></div>
+    						<div class="youzify-media-title" title="<?php echo esc_url( $data['real_name'] ); ?>"><?php echo $data['real_name']; ?></div>
     						<div class="youzify-media-size"><?php echo youzify_file_format_size( $data['file_size'] ); ?></div>
                         </div>
 					</div>
 				</a>
 
 				<div class="youzify-media-download">
-					<a rel="nofollow" href="<?php echo wp_get_attachment_url( $file['media_id'] ); ?>"><i class="fas fa-download"></i><span><?php _e( 'Download', 'youzify' ); ?><span></a>
+					<a rel="nofollow" href="<?php echo esc_url( wp_get_attachment_url( $file['media_id'] ) ); ?>"><i class="fas fa-download"></i><span><?php _e( 'Download', 'youzify' ); ?><span></a>
 				</div>
                 <?php do_action( 'youzify_after_media_item', $file['media_id'], $args ); ?>
             </div>
@@ -446,7 +446,7 @@ class Youzify_Media {
         if ( ( isset( $data['user_id'] ) || isset( $data['group_id'] ) ) && isset( $data['view_all'] ) ) {
             $total = $this->get_media( array_merge( $data, array( 'query' => 'count' ) ) );
             if ( $total > $data['limit'] ) { ?>
-            <a class="youzify-media-view-all" href="<?php echo $this->get_media_by_type_slug( $data ); ?>"><?php echo sprintf( __( 'View All %1s ( %2d )', 'youzify' ), $data['title'], $total ); ?></a>
+            <a class="youzify-media-view-all" href="<?php echo esc_url( $this->get_media_by_type_slug( $data ) ); ?>"><?php echo sprintf( __( 'View All %1s ( %2d )', 'youzify' ), $data['title'], $total ); ?></a>
             <?php }
         }
 

@@ -88,8 +88,12 @@ function youzify_redirect_after_logout() {
         $redirect_url = youzify_membership_page_url( 'login' ) . '?logged_out=true';
     } elseif ( 'profile' == $redirect_to ) {
         $redirect_url = bp_loggedin_user_domain( get_current_user_id() );
-    } elseif ( 'members_directory' == $redirect_to ) {
+    } elseif ( bp_is_active( 'members' ) && ( 'members_directory' == $redirect_to || $redirect_to == 'members' ) ) {
         $redirect_url = bp_get_members_directory_permalink();
+    } elseif ( 'activity' == $redirect_to && bp_is_active( 'activity') ) {
+        $redirect_url = bp_get_activity_directory_permalink();
+    } elseif ( 'groups' == $redirect_to && bp_is_active( 'groups' ) ) {
+        $redirect_url = bp_get_groups_directory_permalink();
     } else {
         $redirect_url = home_url();
     }

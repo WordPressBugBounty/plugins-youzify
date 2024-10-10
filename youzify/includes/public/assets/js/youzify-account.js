@@ -30,10 +30,11 @@
 		  		file 	  = $( this ),
 		  		field 	  = $( this ).closest( '.youzify-uploader-item' ),
 		  		preview   = field.find( '.youzify-photo-preview' ),
-		  		old_attachment_id = field.find( '.youzify-photo-url' ).val();
+		  		old_attachment_id = field.find( '.youzify-photo-url' ).val(),
+		  		nonce = $( this ).closest( 'form' ).find( "input[name='security']" ).val();
 
 		  	// Append Data.
-		  	formData.append( 'nonce', $( this ).closest( 'form' ).find( "input[name='security']" ).val() );
+		  	formData.append( 'nonce', nonce );
 	       	formData.append( 'file', $( this )[0].files[0] );
 	       	formData.append( 'user_id', $( this ).attr( 'data-user-id' ) );
 	       	formData.append( 'source', $( this ).attr( 'data-source' ) );
@@ -139,6 +140,7 @@
 		    // Fill Form with Data.
 		    formData.append( 'attachment_id', attachment_id );
 		    formData.append( 'action', 'youzify_delete_attachment' );
+		    formData.append( 'security', Youzify.security_nonce );
 
 			$.ajax({
                 type: "POST",
@@ -151,13 +153,17 @@
 
 	    // Update Account Photo with the new uploaded photo.
 	    $( '.youzify-account-photo .youzify-photo-url' ).on( 'change' , function( e ) {
+			
 			e.preventDefault();
+			
 			// Get Account Photo url.
 			var account_photo = $( this ).val();
+			
 			// If Input Value Empty Use Default Image
 			if ( ! account_photo ) {
 				account_photo = Youzify_Account.default_img;
 			}
+			
 			// Change Account Photo.
 		    $( '.youzify-account-img' ).fadeOut( 200, function() {
 		    	$( this ).css( 'background-image', 'url(' + account_photo + ')' ).fadeIn( 200 );

@@ -14,7 +14,7 @@ class Youzify_Membership_Login {
 
 			// Redirects.
 			add_filter( 'authenticate', array( $this, 'maybe_redirect_at_authenticate' ), 101, 3 );
-			add_filter( 'login_redirect', array( $this, 'redirect_after_login' ), 10, 3 );
+			add_filter( 'login_redirect', array( $this, 'redirect_after_login' ), 99, 3 );
 			add_action( 'wp_login_failed', array( $this, 'login_failed' ), 9999 );
 
 		}
@@ -167,6 +167,15 @@ class Youzify_Membership_Login {
 					break;
 				case 'profile':
 					$page_url = bp_members_get_user_url( $user_id );
+					break;
+				case 'members':
+					$page_url = bp_get_members_directory_permalink();
+					break;
+				case 'groups':
+					$page_url = bp_get_groups_directory_permalink();
+					break;
+				case 'activity':
+					$page_url = bp_get_activity_directory_permalink();
 					break;
 				default:
 					$page_url = home_url( '/' );

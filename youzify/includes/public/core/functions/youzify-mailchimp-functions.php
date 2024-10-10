@@ -27,7 +27,7 @@ function youzify_is_mailchimp_active() {
 /**
  * Subscribe Registered User to MailChimp.
  */
-function youzify_subscribe_user_to_mailchimp( $user_id) {
+function youzify_subscribe_user_to_mailchimp( $user_id ) {
 
     // Check if Mail Chimp is active.
     if ( ! youzify_is_mailchimp_active() ) {
@@ -54,10 +54,12 @@ function youzify_subscribe_user_to_mailchimp( $user_id) {
 
     // Add User To Mailchimp List.
     youzify_syncMailchimp( $list_id, $user_data );
+    
 
-};
+}
 
 add_action( 'bp_core_activated_user', 'youzify_subscribe_user_to_mailchimp', 10 );
+add_action( 'user_register', 'youzify_subscribe_user_to_mailchimp', 10 );
 
 /**
  * Add User To Mailchimp List

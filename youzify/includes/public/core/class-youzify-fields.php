@@ -970,17 +970,25 @@ class Youzify_Fields {
 			'user_login_redirect_pages' => array(
 				'home'      => __( 'Home', 'youzify' ),
 				'profile' 	=> __( 'Profile', 'youzify' ),
+				'activity' 	=> __( 'Activity Directory', 'youzify' ),
+				'members' 	=> __( 'Members Directory', 'youzify' ),
+				'groups' 	=> __( 'Groups Directory', 'youzify' )
 			),
 			'admin_login_redirect_pages' => array(
 				'home'      => __( 'Home', 'youzify' ),
 				'profile' 	=> __( 'Profile', 'youzify' ),
 				'dashboard' => __( 'Dashboard', 'youzify' ),
+				'activity' 	=> __( 'Activity Directory', 'youzify' ),
+				'members' 	=> __( 'Members Directory', 'youzify' ),
+				'groups' 	=> __( 'Groups Directory', 'youzify' )
 			),
 			'logout_redirect_pages' => array(
 				'profile'   => __( 'User Profile', 'youzify' ),
 				'home'      => __( 'Home', 'youzify' ),
 				'login'   	=> __( 'Login', 'youzify' ),
-				'members_directory' => __( 'Members Directory', 'youzify' ),
+				'activity' 	=> __( 'Activity Directory', 'youzify' ),
+				'members' 	=> __( 'Members Directory', 'youzify' ),
+				'groups' 	=> __( 'Groups Directory', 'youzify' )
 			),
 			'form_icons_position' => array(
 				'form-icons-left'   => __( 'Left', 'youzify' ),

@@ -190,8 +190,9 @@ var youzify_load_attachments = false;
 			timestamp = li.prop( 'class' ).match( /date-recorded-([0-9]+)/ );
 
 			target.addClass('loading');
-			$.post( ajaxurl, {
-				action: 'delete_activity',
+
+			$.post( Youzify.ajax_url, {
+				'action': 'youzify_delete_activity',
 				'cookie': youzify_bp_get_cookies(),
 				'id': $( this ).parent().attr( 'data-activity-id' ),
 				'_wpnonce': target.attr( 'data-nonce' )

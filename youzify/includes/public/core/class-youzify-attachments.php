@@ -1182,13 +1182,44 @@ class Youzify_Attachments {
 	 */
     function delete_attachment() {
 
-    	if ( ! isset( $_POST['attachment_id'] ) || empty( $_POST['attachment_id'] ) ) {
-    		return;
-    	}
+		// Check Nonce Security
+		check_ajax_referer( 'youzify-nonce', 'security' );
 
-	    wp_delete_attachment( absint( $_POST['attachment_id'] ), apply_filters( 'youzify_force_attachments_delete', true ) );
+		$attachment_id = isset( $_POST['attachment_id'] ) && ! empty( $_POST['attachment_id'] ) ? absint( $_POST['attachment_id'] ) : '';
 
+
+		if ( empty( $attachment_id ) ) {
+			wp_send_json_error( __( 'Attachment ID is empty', 'youzify' ) );
+		}
+
+		// Get Attachment Owner
+		$attachment_owner_id = $this->get_attachment_owner( $attachment_id );
+
+		if ( current_user_can( 'administrator' ) || get_current_user_id() ==  $attachment_owner_id ) {
+	    	wp_delete_attachment( $attachment_id, apply_filters( 'youzify_force_attachments_delete', true ) );
+		}
+
+	    wp_send_json_success();
     }
+
+    /**
+     * Get Attachment Owner
+     **/
+    function get_attachment_owner( $attachment_id ) {
+
+	    // Get the attachment post
+	    $attachment_post = get_post( $attachment_id );
+
+	    // Check if it's a valid attachment
+	    if ( $attachment_post && 'attachment' === $attachment_post->post_type ) {
+
+	        // Get the user ID of the owner (author of the attachment)
+	        return $attachment_post->post_author;
+
+	    }
+
+	    return false; // Return false if not a valid attachment or user
+	}
 
 	/**
 	 * Delete Temporary Attachment.

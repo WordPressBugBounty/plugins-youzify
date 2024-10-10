@@ -17,7 +17,9 @@ function youzify_is_mailster_active() {
 /**
  * Subscribe Registered User to Mailster.
  */
-function youzify_subscribe_user_to_mailser( $user_id, $key, $user ) {
+function youzify_subscribe_user_to_mailster( $user_id ) {
+    youzify_log( 'firred');
+    youzify_log( $user_id );
 
     // Check if Mail Chimp is active.
     if ( ! youzify_is_mailster_active() ) {
@@ -66,4 +68,6 @@ function youzify_subscribe_user_to_mailser( $user_id, $key, $user ) {
 
 };
 
-add_action( 'bp_core_activated_user', 'youzify_subscribe_user_to_mailser', 10, 3 );
+add_action( 'bp_core_signup_after_activate', 'youzify_subscribe_user_to_mailster', 10 );
+add_action( 'bp_core_activated_user', 'youzify_subscribe_user_to_mailster', 10 );
+add_action( 'user_register', 'youzify_subscribe_user_to_mailster', 10 );

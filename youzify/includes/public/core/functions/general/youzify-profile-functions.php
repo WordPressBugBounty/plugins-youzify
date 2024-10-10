@@ -825,6 +825,7 @@ add_shortcode( 'youzify_media', 'youzify_media_shortcode' );
 
 function youzify_media_shortcode( $atts ) {
 
+    // return '';
     if ( is_admin() ) {
         return;
     }
@@ -844,6 +845,10 @@ function youzify_media_shortcode( $atts ) {
         'files_number' => 6
     ) ) );
 
+    // Get Allowed Boxes Sizes
+    $args['box'] = in_array( $args['box'], array( 'small', 'medium', 'large' ) ) ? esc_attr( $args['box'] ) : 'small';
+
+    // Get Filters
     $filters = explode( ',', str_replace( ' ', '', $args['filters'] ) );
 
     // Get Available Filters
@@ -907,8 +912,8 @@ function youzify_media_shortcode( $atts ) {
             <?php endforeach; ?>
         </div>
         <?php endif; ?>
-        <div class="youzify-media-widget youzify-media-<?php echo $args['box']; ?>-box">
-            <div class="youzify-media-group-<?php echo $default_type; ?>" data-active="true">
+        <div class="youzify-media-widget youzify-media-<?php echo esc_attr( sanitize_text_field( $args['box'] ) ); ?>-box">
+            <div class="youzify-media-group-<?php echo esc_attr( $default_type ); ?>" data-active="true">
 
                 <div class="youzify-media-widget-content">
                 <?php

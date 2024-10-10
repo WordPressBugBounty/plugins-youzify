@@ -97,7 +97,7 @@
 
     		// Get Files.
     		youzify_atts_files = $( this ).get( 0 );
-
+    		console.log( youzify_atts_files );
     		// Upload Files.
 			$.youzify_UploadFiles( $form, attachments_parent, { 'attachments': youzify_atts_files } );
 
@@ -163,7 +163,7 @@
 		 * Get Attachment Item HTML Code.
 		 */
 		$.youzifyAttachmentItem = function ( options ) {
-
+			console.log( options );
 			// Get Option.
 			var qto = $.extend( {}, options ), file_code, image_code, file_name;
 
@@ -212,6 +212,8 @@
 
 			// Create New Form Data.
 		    var formData = new FormData();
+		    
+		    console.log( file );
 
 		    // Fill Form with Data.
 		    formData.append( 'file', file );
@@ -228,7 +230,11 @@
 		    formData.append( 'attachments_number', form.find( '.youzify-attachment-item' ).length );
 		    formData.append( 'action', 'youzify_upload_wall_attachments' );
 		    formData.append( 'security', Youzify.security_nonce );
-
+		    
+// 		    console.log( file );
+// for (var pair of formData.entries()) {
+//     console.log(pair[0]+ ', ' + pair[1]); 
+// }
 		    // Upload File.
 		    $.ajax({
 		        type  : 'POST',
@@ -277,7 +283,7 @@
 		        },
 
 		        success: function( response ) {
-
+		        	console.log( response );
 					if ( response.success == false ) {
 
 						// Show Error Message

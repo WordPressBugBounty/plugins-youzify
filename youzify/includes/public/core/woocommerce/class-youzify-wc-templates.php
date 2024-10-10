@@ -7,6 +7,9 @@ class Youzify_WC_Templates {
 		// Call Payments Script.
 		add_action( 'wp_enqueue_scripts', array( $this, 'get_payments_scripts' ) );
 
+        // Add Social Login Query Var.
+        add_action( 'template_redirect', array( $this, 'set_edit_address_custom_vars' ), 1 );
+
     	// Shortcodes.
 		add_shortcode( 'youzify_woocommerce_orders', array( $this, 'orders' ) );
 		add_shortcode( 'youzify_woocommerce_addresses', array( $this, 'addresses' ) );
@@ -37,7 +40,7 @@ class Youzify_WC_Templates {
 	function addresses( $atts ) {
 		global $wp;
 		wc_print_notices();
-		$address_type = isset( $wp->query_vars['edit-address'] ) ? $wp->query_vars['edit-address'] : '';
+		$address_type = isset( $wp->query_vars['bp_member_action_variables'] ) ? $wp->query_vars['bp_member_action_variables'] : '';
 		woocommerce_account_edit_address( $address_type );
 	}
 
@@ -199,5 +202,26 @@ class Youzify_WC_Templates {
 
 	}
 
+	/**
+	 * Set Address Custom Vars to allow address saving
+	 **/
+	function set_edit_address_custom_vars() {
+
+        global $wp;
+
+		if ( isset( $wp->query_vars['bp_member_action'] ) && $wp->query_vars['bp_member_action'] == 'edit-address' && isset( $_POST['woocommerce-edit-address-nonce'] ) && isset( $_POST['action'] ) && $_POST['action'] == 'edit_address' ) {
+            $wp->query_vars['edit-address'] = isset( $wp->query_vars['bp_member_action_variables'] ) ? $wp->query_vars['bp_member_action_variables'] : 'billing';
+			add_filter( 'determine_current_user', array( $this , 'change_current_user_to_displayed_user' )  );
+        }
+
+	}
+
+	/**
+	 * Override current user ID with displayed user id
+	 **/
+	function change_current_user_to_displayed_user( $user_id ) {
+	    return bp_displayed_user_id();
+	}
+	
 
 }

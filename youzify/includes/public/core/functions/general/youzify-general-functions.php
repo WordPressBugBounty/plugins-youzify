@@ -1719,10 +1719,12 @@ function youzify_get_tag_attributes( $args = null ) {
     $atts = '';
 
     foreach ( $args as $key => $value ) {
+        
         if ( $key == 'icon' ) {
             continue;
         }
-        $atts .= "data-$key='$value'";
+
+        $atts .= "data-" . sanitize_key( $key ) . "='" . esc_attr( $value ) . "'";
     }
 
     return apply_filters( '', $atts, $args );

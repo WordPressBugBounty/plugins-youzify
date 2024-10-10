@@ -252,3 +252,46 @@ function youzify_buddypress_bp_init() {
 }
 
 add_action( 'bp_init', 'youzify_buddypress_bp_init', 3 );
+
+
+/**
+ * Deletes an Activity item received via a POST request.
+ *
+ * @since 1.2.0
+ */
+function youzify_delete_activity() {
+    if ( ! bp_is_post_request() ) {
+        return;
+    }
+
+    // Check the nonce.
+    check_admin_referer( 'bp_activity_delete_link' );
+
+    if ( ! is_user_logged_in() ) {
+        exit( '-1' );
+    }
+
+    if ( empty( $_POST['id'] ) || ! is_numeric( $_POST['id'] ) ) {
+        exit( '-1' );
+    }
+
+    $activity = new BP_Activity_Activity( (int) $_POST['id'] );
+
+    // Check access.
+    if ( ! bp_activity_user_can_delete( $activity ) ) {
+        exit( '-1' );
+    }
+
+    /** This action is documented in bp-activity/bp-activity-actions.php */
+    do_action( 'bp_activity_before_action_delete_activity', $activity->id, $activity->user_id );
+
+    if ( ! bp_activity_delete( array( 'id' => $activity->id, 'user_id' => $activity->user_id ) ) ) {
+        exit( '-1<div id="message" class="error bp-ajax-message"><p>' . esc_html__( 'There was a problem when deleting. Please try again.', 'buddypress' ) . '</p></div>' );
+    }
+
+    /** This action is documented in bp-activity/bp-activity-actions.php */
+    do_action( 'bp_activity_action_delete_activity', $activity->id, $activity->user_id );
+    exit;
+}
+
+add_action( 'wp_ajax_youzify_delete_activity', 'youzify_delete_activity' );
