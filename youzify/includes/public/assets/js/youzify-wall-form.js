@@ -72,7 +72,15 @@
 				button = $( this ),
 				button_title = $( this ).text(),
 				form   = button.closest( 'form#youzify-wall-form' ),
+				loader_container = form.find( '.youzify-wall-post,[data-sync-loader]'),
 				inputs = {}, post_data, object;
+	
+			let loaderTitles = {};
+
+			// Save original button titles.
+			loader_container.each( function( index ) {
+			    loaderTitles[ index ] = $( this ).text();
+			});
 
 			// Get all inputs and organize them into an object {name: value}
 			$.each( form.serializeArray(), function( key, input ) {
@@ -103,11 +111,16 @@
 	        }
 
 			/* Disable Button & Display Loader. */
-			button.addClass( 'loading' );
-			button.prop('disabled', true );
+			loader_container.addClass( 'loading' ).prop('disabled', true );
+
+			// Add class to form that it was submitted.
 			form.addClass( 'submitted' );
-			button.css( 'min-width', button.css( 'width' ) );
-			button.html( '<i class="fas fa-spinner fa-spin"></i>' );
+
+			// Keep same width.
+			loader_container.css( 'min-width', button.css( 'width' ) );
+
+			// Add Spinner
+			loader_container.html( '<i class="fas fa-spinner fa-spin"></i>' );
 
 			/* Default POST values */
 			var object = '';
@@ -162,10 +175,11 @@
             	// Get Response Data.
             	if ( response.success == false ) {
 					$.youzify_DialogMsg( 'error', response.data.error );
+					loader_container.html( '<i class="fas fa-times"></i>' ).hide().fadeIn( 'slow' );
 				} else {
 
 					// Show Check .
-					button.html( '<i class="fas fa-check"></i>' ).hide().fadeIn( 'slow' );
+					loader_container.html( '<i class="fas fa-check"></i>' ).hide().fadeIn( 'slow' );
 
 					form.find( '.youzify-delete-attachment' ).trigger( 'click' );
 
@@ -184,9 +198,13 @@
 					if ( ! last_date_recorded ) {
 						$( '#activity-stream li:first' ).addClass( 'new-update just-posted' );
 					}
+					
+					if ( response.success ) {
+						$.youzify_DialogMsg( 'success', response.data.message );
+					}
 
 					// Scroll To Added Post.
-					if ( $( response ).get( 0 ) ) {
+					if ( $( response ).get( 0 ) && ! response.data ) {
 						$( 'body,html' ).animate({
 						    scrollTop: $( '#' + $( response ).attr( 'id') ).offset().top - 65 + 'px'
 						}, 1000 );
@@ -240,6 +258,10 @@
 		            form.find( 'div.youzify-activity-privacy' ).find( '.list div' ).first().trigger( 'click' );
 		            form.find( '#whats-new-post-in' ).find( 'option' ).first().trigger( 'click' );
 
+		            if ( form.find( '.youzify-hidden-form-opened' )[0] ) {
+		            	form.find( '.youzify-hidden-form-opened' ).click();
+		            }
+		            
 		            // Update Nice Select.
 		            if ( ! window.hasOwnProperty( 'youzify_disable_niceselect' ) ) {
 		            	form.find( '#whats-new-post-in' ).niceSelect( 'update' );
@@ -271,18 +293,23 @@
 
 				}
 
-				setTimeout( function() {
-					// Change Submit Button Text.
-					button.html( button_title ).fadeIn( 'slow' );
-				}, 1000 );
 
 				// Enable Submit Button.
-				form.find( '.youzify-wall-post,.youzify-update-post' ).prop( 'disabled', false ).removeClass( 'loading' );
+				form.find( '.youzify-wall-post,.youzify-update-post,[data-sync-loader]' ).prop( 'disabled', false ).removeClass( 'loading' );
 
 				// Hide Share Form
 				if( form.parent().attr( 'id' ) == 'youzify-share-activity-wrapper' ) {
 					$( '.youzify-modal-close-icon' ).trigger( 'click' );
 				}
+
+				setTimeout( function() {
+
+					// Change Submit Button Text.
+					loader_container.each( function( index ) {
+						$( this ).html( loaderTitles[ index ] ).fadeIn( 'slow' );
+					})
+
+				}, 500 );
 
 			});
 

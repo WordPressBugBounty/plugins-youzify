@@ -10,6 +10,7 @@
  * @since 1.2.0
  */
 do_action( 'bp_before_bookmarks_loop' ); ?>
+
 <div class="activity">
 
 <?php if ( bp_has_activities( bp_ajax_querystring( 'bookmarks' ) ) ) : ?>

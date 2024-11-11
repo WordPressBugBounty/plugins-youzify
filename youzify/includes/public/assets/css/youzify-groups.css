@@ -516,8 +516,7 @@
     content: "\f302";
 }
 
-.youzify-group-navmenu #membership-requests-groups-li a span,
-.youzify-group-navmenu a#members span {
+.youzify-group-navmenu span {
     font-size: 11px;
     min-width: 20px;
     margin-left: 5px;

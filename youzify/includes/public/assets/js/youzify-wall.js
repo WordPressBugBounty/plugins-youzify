@@ -444,7 +444,7 @@ var youzify_load_attachments = false;
 		 */
 		$( '.activity-list' ).on( 'click', 'li.load-more', function( e ) {
 
-			if ( $( this ).closest('.youzify-activity-shortcode')[0] ) {
+			if ( $( this ).closest( '.youzify-activity-shortcode' )[0] || $( this ).closest( '.youzify-custom-activity' )[0] ) {
 
 				// Stop Propagation.
 				e.stopImmediatePropagation();
@@ -456,7 +456,7 @@ var youzify_load_attachments = false;
 			    load_more_button.addClass( 'loading' );
 
 			    // Get Shortcode Container.
-				var container = $( this ).parents( '.youzify-activity-shortcode' );
+				var container = $( this ).parents( '.youzify-custom-activity' );
 
 				// Increase Page Number
 			    container.attr( 'data-page', parseInt( container.attr( 'data-page' ) ) + 1 );
@@ -488,7 +488,9 @@ var youzify_load_attachments = false;
 		 */
 		$( document ).on( 'click', '.activity-item .youzify-show-item-tools', function ( e ) {
 
-			var button = $( this ), li = button.closest( 'li.activity-item' ), default_icon = button.find( 'i' ).attr( 'class' );
+			var button = $( this ),
+			li = button.closest( 'li.activity-item' ),
+			default_icon = button.find( 'i' ).attr( 'class' );
 
 			if ( button.hasClass( 'loaded' ) ) {
 				li.find( '.youzify-activity-tools' ).fadeToggle();
@@ -508,7 +510,11 @@ var youzify_load_attachments = false;
 	            type: 'POST',
 	            url: ajaxurl,
 	            dataType: 'json',
-	            data: { 'activity_id' : li.attr( 'id' ).substr( 9, li.attr( 'id' ).length ), 'action': 'youzify_get_activity_tools' },
+	            data: {
+	            	component: button.attr( 'data-component' ),
+	            	activity_id : li.attr( 'id' ).substr( 9, li.attr( 'id' ).length ),
+	            	action: 'youzify_get_activity_tools'
+	            },
 	            success: function( response ) {
 
 	            	button.find( 'i' ).attr( 'class', default_icon );

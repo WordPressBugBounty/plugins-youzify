@@ -297,14 +297,14 @@ class Youzify_Activity_Form {
 			wp_send_json_error( array( 'error' => $activity_id->get_error_message() ) );
 		}
 
-		$last_recorded = ! empty( $_POST['since'] ) ? date( 'Y-m-d H:i:s', intval( $_POST['since'] ) ) : 0;
-		if ( $last_recorded ) {
-			$activity_args = array( 'since' => $last_recorded );
-			$bp->activity->last_recorded = $last_recorded;
-			add_filter( 'bp_get_activity_css_class', 'bp_activity_newest_class', 10, 1 );
-		} else {
+		// $last_recorded = ! empty( $_POST['since'] ) ? date( 'Y-m-d H:i:s', intval( $_POST['since'] ) ) : 0;
+		// if ( $last_recorded ) {
+		// 	$activity_args = array( 'since' => $last_recorded );
+		// 	$bp->activity->last_recorded = $last_recorded;
+		// 	add_filter( 'bp_get_activity_css_class', 'bp_activity_newest_class', 10, 1 );
+		// } else {
 			$activity_args = array( 'include' => $activity_id );
-		}
+		// }
 
 		$add_post_live = true;
 

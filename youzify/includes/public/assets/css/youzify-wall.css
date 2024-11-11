@@ -2234,6 +2234,7 @@ vertical-align: middle;
     height: 50px;
     position: absolute;
     background-size: cover;
+    object-fit: cover;
 }
 
 .rtl .youzify-wall-author {
@@ -2386,6 +2387,9 @@ vertical-align: middle;
     padding: 15px 25px;
     border-top: 1px solid var(--yzfy-card-secondary-bg-color);
     background-color: var(--yzfy-card-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .youzify-upload-attachments {
@@ -2394,6 +2398,9 @@ vertical-align: middle;
 
 .youzify-wall-actions .youzify-posting-form-actions {
     float: right;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #youzify-wall-form .bpchk-marker-container {
@@ -2447,11 +2454,11 @@ vertical-align: middle;
 }
 
 #whats-new-post-in-box {
-    float: left;
+/*    float: left;*/
     color: #969696;
     font-size: 11px;
     font-weight: 600;
-    margin-right: 10px;
+/*    margin-right: 10px;*/
     display: inline-block;
 }
 
@@ -5542,9 +5549,9 @@ img.youzify-comment-gif,
     #whats-new-post-in-box {
         width: 100%;
         padding: 0 0 15px;
-        margin: 0 0 15px;
+/*        margin: 0 0 15px;*/
         text-align: center;
-        border-bottom: 1px solid #f6f6f6;
+/*        border-bottom: 1px solid #f6f6f6;*/
     }
 
     #youzify-wall-nav #subnav {
@@ -5722,6 +5729,7 @@ img.youzify-comment-gif,
 
     .youzify-wall-actions {
         padding: 0;
+        flex-direction: column;
     }
 
 /*
@@ -5738,9 +5746,13 @@ img.youzify-comment-gif,
     #youzify-wall-form .youzify-wall-actions .youzify-wall-post {
         width: 85%;
         float: none;
-        padding: 15px;
+/*        padding: 15px;*/
         display: block;
         margin: 15px auto;
+    }
+
+    #youzify-wall-form #whats-new-post-in-box label {
+        display: none;
     }
 
     .youzify-wall-actions .youzify-form-tools {
@@ -5751,6 +5763,7 @@ img.youzify-comment-gif,
 
     .youzify-wall-actions .youzify-posting-form-actions {
         float: none;
+        padding: 0 15px;
     }
 
     .youzify-comment-attachments .youzify-wall-file-details,

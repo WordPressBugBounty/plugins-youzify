@@ -360,7 +360,7 @@ class Youzify_Activity_Functions {
 
 		?>
 
-		<div class="youzify-show-item-tools"><?php echo apply_filters( 'youzify_activity_tools_icon', '<i class="fas fa-ellipsis-h"></i>' ); ?></div>
+		<div class="youzify-show-item-tools" data-component="<?php echo bp_current_component(); ?>"><?php echo apply_filters( 'youzify_activity_tools_icon', '<i class="fas fa-ellipsis-h"></i>' ); ?></div>
 
 		<?php
 

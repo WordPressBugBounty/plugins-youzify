@@ -61,6 +61,7 @@
 	position: absolute;
 	overflow-y: scroll;
 	background-color: var(--yzfy-card-bg-color);
+	background-color: #fff;
 	z-index: 999999;
 	-webkit-box-shadow: 0 0 6px #CACACA;
 	-moz-box-shadow: 0 0 6px #cacaca;

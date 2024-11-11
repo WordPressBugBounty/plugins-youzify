@@ -2,7 +2,7 @@
  * General Css.
  */
  
- :root {
+:root {
     --yzfy-font-family: 'Open Sans';
     --yzfy-big-font-size: 14px;
     --yzfy-medium-font-size: 13.5px;
@@ -2657,7 +2657,6 @@ body .buddypress.widget .item-list {
 #youzify-modal .youzify-modal-2rows:after,
 .youzify-media .youzify-media-group:after,
 .youzify-page-main-content:after,
-.youzify-wall-actions:after,
 .youzify-dialog-container .youzify-dialog-buttons:after {
     content: "";
     clear: both;
@@ -3948,6 +3947,11 @@ a.button:before,
 .youzify-tooltip {
     position: relative;
     display: inline-block;
+}
+
+a.view.activity-time-since.bp-tooltip[data-youzify-tooltip]:before,
+a.view.activity-time-since.bp-tooltip[data-youzify-tooltip]:after {
+    display: none!important;
 }
 
 .youzify-tooltip:after,
