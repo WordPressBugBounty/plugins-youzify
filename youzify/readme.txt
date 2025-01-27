@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/KaineLabs
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 6.6
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -572,3 +572,6 @@ Fix - Increased Plugin Security
 = 1.3.2 - 2024-10-10 =
 Fix - Hiddn Group Posts Not Appearing
 Fix - Updated Translation
+
+= 1.3.3 - 2025-01-24 =
+Fix - Review Operations Capability Check

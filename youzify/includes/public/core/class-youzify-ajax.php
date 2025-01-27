@@ -56,7 +56,7 @@ class Youzify_Ajax {
 	    // Delete Token.
 	    $delete_token = delete_user_meta( $user_id, $option_id );
 
-	    if ( $delete_token ) {
+	    // if ( $delete_token ) {
 
 	        // Delete Account infos.
 	        delete_user_meta( $user_id, 'youzify_wg_' . $provider . '_account_user_data' );
@@ -66,11 +66,11 @@ class Youzify_Ajax {
 
 	        do_action( 'youzify_after_unlinking_provider_account', $user_id, $provider );
 
-	    } else {
+	    // } else {
 
-	        $data['error'] = __( "We couldn't unlink the account, please try again!", 'youzify' );
+	        // $data['error'] = __( "We couldn't unlink the account, please try again!", 'youzify' );
 
-	    }
+	    // }
 
 	    die( json_encode( $data ) );
 

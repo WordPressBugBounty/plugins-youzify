@@ -37,7 +37,7 @@ class Youzify {
             add_action( 'bp_init', array( self::$instance, 'buddypress_init' ) );
             add_action( 'bbp_init', array( self::$instance, 'bbpress_init' ) );
             add_action( 'woocommerce_init', array( self::$instance, 'woocommerce_init' ) );
-
+                
             // Include General Functions
             include YOUZIFY_CORE . 'functions/general/youzify-general-functions.php';
             include YOUZIFY_CORE . 'functions/general/youzify-account-functions.php';
@@ -90,6 +90,9 @@ class Youzify {
 
     // Include Files.
     function init() {
+
+            // Remove Action
+            remove_action( 'bp_admin_init', 'bp_core_set_ajax_uri_globals', 2 );
 
         // Include Notifications Files.
         if ( bp_is_active( 'notifications' ) ) {

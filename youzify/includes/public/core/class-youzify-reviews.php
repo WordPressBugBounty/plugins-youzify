@@ -216,6 +216,8 @@ class Youzify_Reviews {
 			$youzify_query->update_user_reviews_count( $review_data['reviewed'] );
 			$youzify_query->update_user_ratings_rate( $review_data['reviewed'] );
 			$response['msg'] = __( 'The review is successfully deleted.', 'youzify' );
+		} else {
+			$response['error'] = __( "Sorry you are not allowed to delete this review.", 'youzify' );
 		}
 
 		die( json_encode( $response ) );

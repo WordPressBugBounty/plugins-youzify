@@ -194,6 +194,10 @@ class Youzify_Reviews_Query {
 	 */
 	function update_review( $review_id, $data = array() ) {
 
+		if ( ! youzify_is_user_review( $review_id ) ) {
+			return false;
+		}
+
 		global $wpdb, $Youzify_reviews_table;
 
 		// Get Current Time.
@@ -212,9 +216,13 @@ class Youzify_Reviews_Query {
 	}
 
 	/**
-	 * Delete Reaction.
+	 * Delete Review.
 	 */
 	function delete_review( $review_id ) {
+
+		if ( ! youzify_is_user_can_delete_reviews() || ! youzify_is_user_review( $review_id ) ) {
+			return false;
+		}
 
 		global $wpdb, $Youzify_reviews_table;
 

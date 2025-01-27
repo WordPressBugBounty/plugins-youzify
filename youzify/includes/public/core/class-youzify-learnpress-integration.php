@@ -217,23 +217,6 @@ class Youzify_LearnPress_Integration {
 	        'type'      => 'new_learnpress_course',
 	    ) );
 
-
-	    // youzify_log('hanaa');
-
-	    // $user_link = bp_core_get_userlink( $course->get_author_id() );
-
-	    // // Get Activity Action.
-	    // $action = apply_filters( '', sprintf( __( '%s added a new course', 'youzify' ), $user_link ), $course->get( 'id' ) );
-
-	    // // record the activity
-	    // bp_activity_add( array(
-	    //     'user_id'   => $course->get_author_id(),
-	    //     'action'    => $action,
-	    //     'item_id'   => $course->get( 'id' ),
-	    //     'component' => 'activity',
-	    //     'type'      => '',
-	    // ) );
-
 	}
 
 	/**

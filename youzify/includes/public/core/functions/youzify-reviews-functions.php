@@ -380,6 +380,21 @@ function youzify_is_user_can_delete_reviews() {
 
 }
 
+function youzify_is_user_review( $review_id ) {
+
+    global $wpdb, $Youzify_reviews_table;
+
+    // Get Result
+    $reviewer = $wpdb->get_var( $wpdb->prepare( "SELECT reviewer FROM $Youzify_reviews_table WHERE id = %d", $review_id ) );
+
+    if ( bp_loggedin_user_id() == $reviewer ) {
+        return true;
+    }
+
+    return false;
+
+}
+
 /**
  * Get Rating Stars.
  */

@@ -26,44 +26,6 @@ class Youzify_Bookmarks_Tab {
     }
 
     /**
-     * Set User Bookmarks Query.
-     */
-    // function set_user_bookmarks_query( $retval ) {
-
-    //     if ( ! bp_is_current_component( 'bookmarks' ) || $retval['display_comments'] == 'stream'  ) {
-    //         return $retval;
-    //     }
-    //         youzify_log('heros');
-
-    //     // Get List of bookmarked items.
-    //     $sql = $wpdb->prepare( "SELECT item_id FROM $Youzify_bookmark_table WHERE user_id = %d AND item_type = %s", bp_displayed_user_id(), 'activity' );
-
-    //     // Clean up array.
-    //     $items_ids = wp_parse_id_list( $wpdb->get_col( $sql ) );
-
-    //     // Check if private users have no activities.
-    //     if ( empty( $items_ids ) ) {
-    //         return $retval;
-    //     }
-
-    //     // Covert List of Activities ids to string.
-    //     $items_ids = implode( ',', $items_ids );
-
-    //     // Set Activities
-    //     $retval['include'] = $items_ids;
-
-    //     // Show Hidden Posts to admins and profile owners.
-    //     if ( bp_core_can_edit_settings() ) {
-    //         $retval['show_hidden'] = 1;
-    //     }
-
-    //     $retval['per_page'] = 2;
-
-    //     return $retval;
-
-    // }
-
-    /**
      * Setup Tabs.
      */
     function add_bookmark_subtabs() {
