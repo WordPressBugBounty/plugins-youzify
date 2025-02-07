@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/KaineLabs
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 6.6
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -575,3 +575,6 @@ Fix - Updated Translation
 
 = 1.3.3 - 2025-01-24 =
 Fix - Review Operations Capability Check
+
+= 1.3.4 - 2025-02-07 =
+Fix - Fixed Private Groups and Hidden Groups Posts Visibility

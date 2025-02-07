@@ -1347,6 +1347,14 @@ class Youzify_Admin {
 	 */
 	function save_addon_key_license() {
 
+		if ( ! is_super_admin() ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Sorry! you are not allowed to perform this action.', 'sellzyo' )
+				)
+			);
+		}
+
 		// retrieve the license from the database
 		$license = trim( sanitize_text_field( $_POST['license'] ) );
 

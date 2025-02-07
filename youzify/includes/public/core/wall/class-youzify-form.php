@@ -299,11 +299,11 @@ class Youzify_Activity_Form {
 
 		// $last_recorded = ! empty( $_POST['since'] ) ? date( 'Y-m-d H:i:s', intval( $_POST['since'] ) ) : 0;
 		// if ( $last_recorded ) {
-		// 	$activity_args = array( 'since' => $last_recorded );
-		// 	$bp->activity->last_recorded = $last_recorded;
-		// 	add_filter( 'bp_get_activity_css_class', 'bp_activity_newest_class', 10, 1 );
+			// $activity_args = array( 'since' => $last_recorded );
+			// $bp->activity->last_recorded = $last_recorded;
+			// add_filter( 'bp_get_activity_css_class', 'bp_activity_newest_class', 10, 1 );
 		// } else {
-			$activity_args = array( 'include' => $activity_id );
+		$activity_args = array( 'include' => $activity_id, 'show_hidden' => true );
 		// }
 
 		$add_post_live = true;
@@ -317,6 +317,7 @@ class Youzify_Activity_Form {
 		remove_filter( 'bp_get_activity_css_class', 'youzify_add_activity_css_class' );
 
 		if ( $add_post_live &&  bp_has_activities ( $activity_args ) ) {
+
 			while ( bp_activities() ) {
 				bp_the_activity();
 				bp_get_template_part( 'activity/entry' );
