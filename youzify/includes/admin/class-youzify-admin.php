@@ -381,7 +381,8 @@ class Youzify_Admin {
     			'save_changes' => __( 'Save Changes', 'youzify' ),
 	            'default_img' => YOUZIFY_ASSETS . 'images/default-img.png',
 	            'ajax_url'    => admin_url( 'admin-ajax.php' ),
-    			'done' => __( 'Save', 'youzify' )
+    			'done' => __( 'Save', 'youzify' ),
+    			'nonce' => wp_create_nonce( 'youzify-admin-nonce' )
         	) );
 
 	        // Load Color Picker
@@ -1450,7 +1451,10 @@ class Youzify_Admin {
 	 */
 	function show_activation_change_log() {
 
-
+	    if ( ! is_super_admin() ) {
+	        return;
+	    }
+	    
 		$id = 'youzify-change-log-notice-' . YOUZIFY_VERSION;
 
 	    if ( isset( $_GET['youzify-dismiss-offer-notice'] ) ) {

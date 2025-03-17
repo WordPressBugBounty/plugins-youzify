@@ -91,14 +91,20 @@ class Youzify {
     // Include Files.
     function init() {
 
-            // Remove Action
-            remove_action( 'bp_admin_init', 'bp_core_set_ajax_uri_globals', 2 );
-
+        // Remove Action
+        // remove_action( 'bp_admin_init', 'bp_core_set_ajax_uri_globals', 2 );
+        add_action( 'bp_init', array( $this, 'register_actions' ) );
+        // $this->register_actions()
         // Include Notifications Files.
         if ( bp_is_active( 'notifications' ) ) {
             require YOUZIFY_CORE . 'functions/youzify-notifications-functions.php';
         }
 
+    }
+
+    function register_actions() {
+        bp_ajax_register_action( 'youzify_delete_activity' );
+        bp_ajax_register_action( 'youzify_post_update' );
     }
 
     /**

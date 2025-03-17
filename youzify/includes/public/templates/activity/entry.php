@@ -11,7 +11,6 @@
  *
  * @since 1.2.0
  */
-
 do_action( 'bp_before_activity_entry' ); ?>
 
 <li class="<?php bp_activity_css_class(); ?>" data-effect="fadeInDown" id="activity-<?php bp_activity_id(); ?>">

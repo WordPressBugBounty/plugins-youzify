@@ -18,8 +18,6 @@ function youzify_is_mailster_active() {
  * Subscribe Registered User to Mailster.
  */
 function youzify_subscribe_user_to_mailster( $user_id ) {
-    youzify_log( 'firred');
-    youzify_log( $user_id );
 
     // Check if Mail Chimp is active.
     if ( ! youzify_is_mailster_active() ) {

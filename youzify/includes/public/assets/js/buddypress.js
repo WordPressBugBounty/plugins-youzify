@@ -1035,6 +1035,12 @@ jq(document).ready( function() {
 			var scope  = bp_get_directory_preference( object, 'scope' );
 			var filter = bp_get_directory_preference( object, 'filter' );
 			var extras = bp_get_directory_preference( object, 'extras' );
+			
+			console.log( 'object' + object);
+			console.log( 'scope' + scope);
+			console.log( 'filter' + filter);
+			console.log( 'extras' + extras);
+			console.log( 'page_number' + page_number);
 
 			bp_filter_request( object, filter, scope, 'div.' + object, search_terms, page_number, extras, caller, template );
 
@@ -1745,6 +1751,7 @@ jq(document).ready( function() {
 		}
 
 		data.bp_activity_last_recorded = activity_last_recorded;
+		data.bp_heartbeat = bp_get_cookies() || encodeURIComponent( jq.param( { 'bp-activity-scope': null } ) );
 
 		last_recorded_search = bp_get_querystring('s');
 

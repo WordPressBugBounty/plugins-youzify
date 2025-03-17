@@ -854,6 +854,10 @@ function youzify_special_offer() {
 add_action( 'admin_notices', 'youzify_offer_banner' );
 function youzify_offer_banner( $show_button = true ) {
 
+    if ( ! is_super_admin() ) {
+        return;
+    }
+
     if (  ! youzify_is_feature_available() ) {
         return;
     }
@@ -861,7 +865,7 @@ function youzify_offer_banner( $show_button = true ) {
     $id = 'youzify_aap_october_2021_offer';
 
     if ( isset( $_GET['youzify-dismiss-offer-notice'] ) ) {
-        youzify_update_option( $_GET['youzify-dismiss-offer-notice'], 1 );
+        youzify_update_option( sanitize_text_field( $_GET['youzify-dismiss-offer-notice'] ), 1 );
     }
 
     if ( get_option( $id ) ) {
@@ -950,12 +954,15 @@ function youzify_offer_banner( $show_button = true ) {
 add_action( 'admin_notices', 'youzify_pro_version_banner', 0 );
 function youzify_pro_version_banner( $show_button = true ) {
 
+    if ( ! is_super_admin() ) {
+        return;
+    }
+    
     if (  youzify_is_feature_available() ) {
         return;
     }
 
     $id = 'youzify_pro_version_october_2022_offer';
-    // $id = 'youzify_pro_version_october_2021_offer1';
 
     if ( isset( $_GET['youzify-dismiss-offer-notice'] ) ) {
         youzify_update_option( $_GET['youzify-dismiss-offer-notice'], 1 );

@@ -371,21 +371,53 @@ function youzify_add_members_directory_types_tabs() {
 
             // Get Member Type.
             $member_type = bp_get_member_type_object( $type_id );
-
             // Get Type
-            $type_infos = bp_get_term_by( 'slug', $type_id,'bp_member_type' );
+            // $type_infos = bp_get_term_by( 'slug', $type_id,'bp_member_type' );
 
-            if ( ! isset ( $type_infos->count ) || $type_infos->count < 1 ) {
+            $count = youzify_get_activated_members_count_by_type( $type_id );
+            if ( empty ( $count ) || $count < 1 ) {
                 continue;
             }
 
         ?>
-        <li id="members-<?php echo $type_id; ?>" class="yzmt-directory-tab"><?php youzify_add_member_types_tab_syling( $type_id, $member_type->db_id ); ?><a href="<?php echo bp_member_type_directory_permalink( $type_id ); ?>"><?php if ( class_exists( 'Youzify' ) ) echo '<i class="' . get_term_meta( $member_type->db_id, 'youzify_type_icon', true ) .'"></i>'; printf( __( '%1s %2s', 'youzify-member-types' ), $member_type->labels['name'], '<span>' . apply_filters( 'youzify_member_types_count', $type_infos->count, $type_id ) . '</span>' ); ?></a></li>
+        <li id="members-<?php echo $type_id; ?>" class="yzmt-directory-tab"><?php youzify_add_member_types_tab_syling( $type_id, $member_type->db_id ); ?><a href="<?php echo bp_member_type_directory_permalink( $type_id ); ?>"><?php if ( class_exists( 'Youzify' ) ) echo '<i class="' . get_term_meta( $member_type->db_id, 'youzify_type_icon', true ) .'"></i>'; printf( __( '%1s %2s', 'youzify-member-types' ), $member_type->labels['name'], '<span>' . apply_filters( 'youzify_member_types_count', $count, $type_id ) . '</span>' ); ?></a></li>
 
         <?php
     }
 
 }
+function youzify_get_activated_members_count_by_type( $member_type ) {
+    $args = array(
+        'type'        => 'active',  // Only get active members
+        'member_type' => $member_type, // Filter by member type
+        'count_total' => true, // Get total count
+    );
+
+    $user_query = new BP_User_Query( $args );
+
+    return !empty( $user_query->total_users ) ? (int) $user_query->total_users : 0;
+}
+// function youzify_get_activated_members_count_by_type( $member_type ) {
+//     global $wpdb, $bp;
+
+//     $users_table = $wpdb->users;
+//     $usermeta_table = $wpdb->usermeta;
+//     $last_activity_table = $bp->members->table_name_last_activity;
+
+//     // Query to count members with the given type who have recorded last activity
+//     $count = $wpdb->get_var( $wpdb->prepare("
+//         SELECT COUNT(DISTINCT u.ID) 
+//         FROM {$users_table} u
+//         INNER JOIN {$usermeta_table} um ON u.ID = um.user_id 
+//         INNER JOIN {$last_activity_table} la ON u.ID = la.user_id
+//         WHERE um.meta_key = 'bp_member_type' 
+//         AND um.meta_value = %s 
+//         AND la.component = 'members' 
+//         AND la.type = 'last_activity'
+//     ", $member_type ) );
+
+//     return intval( $count );
+// }
 
 /**
  * Get Directory Stling

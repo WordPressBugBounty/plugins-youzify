@@ -20,11 +20,12 @@
 	        var parent = button.closest( '.youzify-addon-license-area' ),
 	        	title = button.text(),
 	        	data = {
-		        action: 'youzify_save_addon_key_license',
-		        license: $( '.youzify-addon-license-key' ).find( 'input' ).val(),
-		        product_name : button.data( 'product-name' ),
-		        name: button.data( 'option-name' )
-		    };
+			        action: 'youzify_save_addon_key_license',
+			        license: $( '.youzify-addon-license-key' ).find( 'input' ).val(),
+			        product_name : button.data( 'product-name' ),
+			        name: button.data( 'option-name' )
+			    };
+			    
 		    $.ajax({
 		        type: 'post',
 		        url: Youzify.ajax_url,

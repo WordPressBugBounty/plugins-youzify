@@ -11,8 +11,6 @@ class Youzify_LearnDash_Courses_Tab {
         
         $courses = learndash_user_get_enrolled_courses( $user_id, array(), true );
 
-		// youzify_log( $courses );
-		
 		// Prepare Posts Arguments.
 		if ( $user_id == 0 || empty( $courses ) ) {
 			$args = null;
