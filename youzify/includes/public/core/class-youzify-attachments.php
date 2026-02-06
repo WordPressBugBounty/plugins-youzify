@@ -148,6 +148,7 @@ class Youzify_Attachments {
 
 	}
 
+
 	/**
 	 * Save Posts Embeds Videos.
 	 **/
@@ -168,6 +169,10 @@ class Youzify_Attachments {
 		if ( preg_match_all( '#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', sanitize_textarea_field( $_POST['content'] ), $match ) ) {
 
 			foreach ( array_unique( $match[0] ) as $link ) {
+
+				if ( ! youzify_is_safe_url( $link ) ) {
+				    continue; 
+				}
 
 				foreach ( $supported_videos as $provider => $domain ) {
 
@@ -749,6 +754,11 @@ class Youzify_Attachments {
 		add_filter( 'upload_dir', array( $this, 'youzify_upload_directory' ) );
 
     	$attachment_id = '';
+
+	    // ---- SSRF Protection ----
+	    if ( is_string( $file_path ) && preg_match( '#^https?://#i', $file_path ) ) {
+	        return new WP_Error( 'youzify_remote_file_not_allowed' );
+	    }
 
     	// Call Required Files
 		require_once ABSPATH . 'wp-admin/includes/media.php';

@@ -185,12 +185,15 @@ class LinkPreview {
      */
     function getPage( $url ) {
 
+        $lang = apply_filters( 'youzify_live_preview_request_lang', 'en-US' );
+        
         // Get Preview Args
         $args = array(
             'timeout'     => 120,
             'redirection' => 10,
             'headers' => array(
-                'user-agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2)'
+                'user-agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2)',
+                'Accept-Language' => $lang
             )
         );
 

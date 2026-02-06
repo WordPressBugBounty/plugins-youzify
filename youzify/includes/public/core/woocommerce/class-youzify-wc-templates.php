@@ -83,10 +83,10 @@ class Youzify_WC_Templates {
 		if ( isset( $_GET['add-payment-method'] ) ) {
 
 			// Woocommerce Payments Scripts.
+			// $this->stripe_scritps();
 			$this->woocommerce_scripts();
 
 			// Stripe Script.
-			$this->stripe_scritps();
 
 			woocommerce_account_add_payment_method();
 
@@ -168,7 +168,7 @@ class Youzify_WC_Templates {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		// Register Script.
-		wp_register_script( 'wc-add-payment-method', WC()->plugin_url() . 'assets/js/frontend/add-payment-method' . $suffix . '.js', array( 'jquery', 'woocommerce' ), WC()->versio, true );
+		wp_register_script( 'wc-add-payment-method', WC()->plugin_url() . 'assets/js/frontend/add-payment-method' . $suffix . '.js', array( 'jquery', 'woocommerce' ), WC()->version, true );
 
 		// Call Script.
 		wp_enqueue_script( 'wc-add-payment-method' );
@@ -188,11 +188,11 @@ class Youzify_WC_Templates {
 
 			if ( $payment_management->settings['enabled'] === 'yes' ) {
 
-				add_filter( 'woocommerce_is_checkout', '__return_true');
+				// add_filter( 'woocommerce_is_checkout', '__return_true');
 		
-				if ( isset( $_GET['add-payment-method'] ) ) {
-					$_GET['pay_for_order'] = 1;
-				}
+				// if ( isset( $_GET['add-payment-method'] ) ) {
+					// $_GET['pay_for_order'] = 1;
+				// }
 
 				$payment_management->payment_scripts();
 

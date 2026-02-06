@@ -52,7 +52,7 @@ class Youzify_WC_Redirects {
 
             case 'set-default-payment-method':
             case 'delete-payment-method':
-                $url = add_query_arg( $endpoint, $value, $base_path . 'payment' );
+                $url = add_query_arg( $endpoint, $value, $base_path . 'payment-methods' );
                 break;
 
             case 'view-subscription':

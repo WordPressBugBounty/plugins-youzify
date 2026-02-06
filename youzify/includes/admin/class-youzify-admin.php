@@ -1351,7 +1351,7 @@ class Youzify_Admin {
 		if ( ! is_super_admin() ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'Sorry! you are not allowed to perform this action.', 'sellzyo' )
+					'message' => __( 'Sorry! you are not allowed to perform this action.', 'youzify' )
 				)
 			);
 		}

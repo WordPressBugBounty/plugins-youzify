@@ -1,11 +1,11 @@
 === Youzify – BuddyPress Community, User Profile, Social Network & Membership Plugin for WordPress ===
 Contributors: youzify
-Tags: buddypress, woocommerce, membership, community, user profile, bbpress, social networking, activity streams, messaging, friends, groups, notifications, member, intranet, forums
+Tags: buddypress, woocommerce, membership, community, user profile
 Donate link: https://www.paypal.me/KaineLabs
 Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 6.6
-Stable tag: 1.3.5
+Tested up to: 6.9
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -581,3 +581,12 @@ Fix - Fixed Private Groups and Hidden Groups Posts Visibility
 
 = 1.3.5 - 2025-03-18 =
 Fix - Fixed Load More Content Inaccurate
+
+= 1.3.6 - 2026-01-15 =
+Security: Improved media handling validation to prevent a theoretical SSRF edge case.
+
+Security: Added stricter request sanitization and validation checks.
+
+Fix: Hardened internal request logic for better safety and stability.
+
+Improvement: General code cleanup and minor performance optimizations.

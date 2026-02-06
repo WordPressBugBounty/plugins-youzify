@@ -50,6 +50,37 @@
     background-color: transparent;
 }
 
+.youzify-wc-payment-methods-content > a.button {
+    font-weight: 600;
+    background-color: var(--yzfy-scheme-color);
+    border-radius: 5px;
+    color: var(--yzfy-scheme-text-color);
+    padding: 15px 25px;
+    font-size: 14px;
+}
+
+.youzify .youzify-wc-main-content table.shop_table td a.delete {
+    background-color: #E53935;
+    padding: 8px 15px;
+    border-radius: 50px;
+    color: #fff;
+}
+
+
+.youzify .youzify-wc-main-content table.shop_table td.payment-method-actions {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+.youzify .youzify-wc-main-content table.shop_table td a.default {
+    padding: 8px 15px;
+    background-color: var(--yzfy-scheme-color);
+    border-radius: 50px;
+    color: var(--yzfy-scheme-text-color);
+    padding: 8px 15px;
+}
+
+
 .youzify .youzify-wc-main-content table.shop_table td a:hover {
     background-color: transparent;
 }

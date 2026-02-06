@@ -1070,3 +1070,38 @@ function youzify_get_user_certificates( $certificates = '' ) {
     endif;
 
 }
+
+
+/**
+ * Check if a URL is safe for server-side requests.
+ * Blocks internal IPs, loopbacks, and non-standard ports.
+ */
+function youzify_is_safe_url( $url ) {
+    
+    // Define the security arguments for WordPress
+    $args = array(
+        'reject_unsafe_urls' => true, // Blocks internal/private IP ranges
+    );
+
+    // Pass the $args into the native WordPress validator
+    // This is the most robust way to prevent SSRF in WordPress
+    if ( ! wp_http_validate_url( $url, $args ) ) {
+        return false;
+    }
+
+    // Additional check: Ensure the IP doesn't resolve to a private range
+    // (Protects against DNS Rebinding/Localhost bypasses)
+    $host = parse_url( $url, PHP_URL_HOST );
+    
+    if ( ! $host ) {
+        return false;
+    }
+    
+    $ip = gethostbyname( $host );
+    
+    if ( ! filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+        return false;
+    }
+
+    return true;
+}

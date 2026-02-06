@@ -1203,8 +1203,6 @@ class Youzify_Account {
 	 **/
 	function save_notification( $notifications ) {
 
-		youzify_log( $notifications );
-		
 	    // Init New Array();
 	    $bp_notification = array();
 

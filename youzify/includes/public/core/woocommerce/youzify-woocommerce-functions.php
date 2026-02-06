@@ -97,3 +97,14 @@ function youzify_wc_add_new_order_activity( $order_id ) {
 
 	return true;
 }
+
+
+add_filter( 'the_posts', function( $posts ) {
+    if ( function_exists('youzify_is_woocommerce_tab') && youzify_is_woocommerce_tab( 'payment-methods' ) && ( isset( $_GET['add-payment-method'] ) || isset( $_GET['delete-payment-method'] ) ) ) {
+        global $wp_query;
+        $wp_query->is_page = true;
+        $wp_query->queried_object_id = wc_get_page_id( 'myaccount' ); // ID 40
+        $wp_query->queried_object = get_post( $wp_query->queried_object_id );
+    }
+    return $posts;
+} );

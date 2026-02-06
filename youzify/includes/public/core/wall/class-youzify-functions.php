@@ -341,9 +341,9 @@ class Youzify_Activity_Functions {
 		// Get Link Preview.
 		$linkPreview = new LinkPreview();
 
+		// youzify_log('siir')
 		// Print Preview.
 		echo $linkPreview->crawl( strip_tags( sanitize_text_field( $_POST['text'] ) ), -1, '' );
-
 		SetUp::finish();
 
 		die();

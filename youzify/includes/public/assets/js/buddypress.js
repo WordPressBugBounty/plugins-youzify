@@ -532,49 +532,94 @@ jq(document).ready( function() {
 		activity = jq( this ).closest( '.activity' );
 
 		/* Comment / comment reply links */
-		if ( target.hasClass('acomment-reply') || target.parent().hasClass('acomment-reply') ) {
-			if ( target.parent().hasClass('acomment-reply') ) {
-				target = target.parent();
-			}
+		// if ( target.hasClass('acomment-reply') || target.parent().hasClass('acomment-reply') || target.closest('.acomment-reply').length ) {
+		// 	if ( target.parent().hasClass('acomment-reply') ) {
+		// 		target = target.parent();
+		// 	}
+		// 	id  = target.attr('id');
+		// 	ids = id.split('-');
 
-			id  = target.attr('id');
-			ids = id.split('-');
+		// 	a_id = ids[2];
+		// 	c_id = target.attr('href').substr( 10, target.attr('href').length );
+		// 	// alert('heros')
+		// 	form = activity.find( '#ac-form-' + a_id );
 
-			a_id = ids[2];
-			c_id = target.attr('href').substr( 10, target.attr('href').length );
-			// alert('heros')
-			form = activity.find( '#ac-form-' + a_id );
+		// 	form.css( 'display', 'none' );
+		// 	form.removeClass('root');
+		// 	jq('.ac-form').hide();
 
-			form.css( 'display', 'none' );
-			form.removeClass('root');
-			jq('.ac-form').hide();
+		// 	/* Hide any error messages */
+		// 	form.children('div').each( function() {
+		// 		if ( jq(this).hasClass( 'error' ) ) {
+		// 			jq(this).hide();
+		// 		}
+		// 	});
 
-			/* Hide any error messages */
-			form.children('div').each( function() {
-				if ( jq(this).hasClass( 'error' ) ) {
-					jq(this).hide();
-				}
-			});
+		// 	if ( ids[1] !== 'comment' ) {
+		// 		activity.find('#acomment-' + c_id).append( form );
+		// 	} else {
+		// 		activity.find('#activity-' + a_id + ' .activity-comments').append( form );
+		// 	}
 
-			if ( ids[1] !== 'comment' ) {
-				activity.find('#acomment-' + c_id).append( form );
-			} else {
-				activity.find('#activity-' + a_id + ' .activity-comments').append( form );
-			}
+		// 	if ( form.parent().hasClass( 'activity-comments' ) ) {
+		// 		form.addClass('root');
+		// 	}
 
-			if ( form.parent().hasClass( 'activity-comments' ) ) {
-				form.addClass('root');
-			}
+		// 	form.slideDown( 200 );
+		// 	jq.scrollTo( form, 500, {
+		// 		offset:-100,
+		// 		easing:'swing'
+		// 	} );
+		// 	activity.find('#ac-form-' + ids[2] + ' textarea').focus();
 
-			form.slideDown( 200 );
-			jq.scrollTo( form, 500, {
-				offset:-100,
-				easing:'swing'
-			} );
-			activity.find('#ac-form-' + ids[2] + ' textarea').focus();
+		// 	return false;
+		// }
+const replyElement = target.closest('.acomment-reply');
 
-			return false;
-		}
+if (replyElement.length) {
+    // Ensure 'target' is always the .acomment-reply element itself
+    target = replyElement;
+
+    id  = target.attr('id');
+    ids = id.split('-');
+
+    a_id = ids[2];
+    c_id = target.attr('href').substring(10); // cleaner way to slice
+
+    form = activity.find('#ac-form-' + a_id);
+
+    form.css('display', 'none');
+    form.removeClass('root');
+    jq('.ac-form').hide();
+
+    // Hide any error messages
+    form.children('div').each(function() {
+        if (jq(this).hasClass('error')) {
+            jq(this).hide();
+        }
+    });
+
+    if (ids[1] !== 'comment') {
+        activity.find('#acomment-' + c_id).append(form);
+    } else {
+        activity.find('#activity-' + a_id + ' .activity-comments').append(form);
+    }
+
+    if (form.parent().hasClass('activity-comments')) {
+        form.addClass('root');
+    }
+
+    form.slideDown(200);
+
+    jq.scrollTo(form, 500, {
+        offset: -100,
+        easing: 'swing'
+    });
+
+    activity.find('#ac-form-' + ids[2] + ' textarea').focus();
+
+    return false;
+}
 
 		/* Activity comment posting */
 		if ( target.attr('name') === 'ac_form_submit' ) {
