@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Membership_Register
 {
@@ -314,6 +315,7 @@ class Youzify_Membership_Register
         $domain = isset( $email_parts[1] ) ? $email_parts[ 1 ] : '';
 
         if ( ! in_array( $domain, $allowed_domains ) ) {
+			/* translators: %s: list of allowed email domains */
 			$this->redirect( sprintf( __( 'Registration is only allowed with the following email domain(s): %s', 'youzify' ), implode( ', ', $allowed_domains ) ) );
         }
     
@@ -355,7 +357,7 @@ class Youzify_Membership_Register
 		?>
 
 		<div class="youzify-membership-form-note youzify-membership-terms-note">
-			<?php echo sprintf(__('By creating an account you agree to our <a href="%1s" target="_blank">Terms and Conditions</a> and our <a href="%2s" target="_blank">Privacy Policy</a>.', 'youzify'), $terms_url, $privacy_url); ?>
+			<?php /* translators: %1$s: terms and conditions URL, %2$s: privacy policy URL */ echo sprintf(__('By creating an account you agree to our <a href="%1$s" target="_blank">Terms and Conditions</a> and our <a href="%2$s" target="_blank">Privacy Policy</a>.', 'youzify'), $terms_url, $privacy_url); ?>
 		</div>
 
 		<?php

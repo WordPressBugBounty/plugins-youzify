@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Profile_Groups_Widget {
 
@@ -56,7 +57,7 @@ class Youzify_Profile_Groups_Widget {
 
                 <?php if ( $groups_nbr > $max_groups ) : ?>
                     <div class="youzify-more-items">
-                        <a href="<?php echo bp_members_get_user_url( bp_displayed_user_id() ) . bp_get_groups_slug();?>"><?php echo sprintf( __( 'Show All Groups ( %s )', 'youzify' ), $groups_nbr ); ?></a>
+                        <a href="<?php echo bp_members_get_user_url( bp_displayed_user_id() ) . bp_get_groups_slug();?>"><?php /* translators: %s: total number of groups */ echo sprintf( __( 'Show All Groups ( %s )', 'youzify' ), $groups_nbr ); ?></a>
                     </div>
                 <?php endif; ?>
 

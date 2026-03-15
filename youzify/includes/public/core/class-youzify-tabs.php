@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Tabs {
 
@@ -77,7 +78,7 @@ class Youzify_Tabs {
 		    	array(
 		            'slug' => 'all',
 		            'parent_slug' => 'posts',
-		            'name' => __( 'Posts', 'youzify-fes' ),
+		            'name' => __( 'Posts', 'youzify' ),
 		            'parent_url' => bp_displayed_user_url()  . 'posts/',
 		            'screen_function' => array( $this, 'posts_screen' ),
 		        )

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Services Settings.
@@ -91,7 +92,7 @@ function youzify_services_widget_settings() {
                             <p class="option-desc"><?php _e( 'Type service title', 'youzify' ); ?></p>
                         </div>
                         <div class="option-content">
-                            <input type="text" name="youzify_services[<?php echo $i; ?>][title]" value="<?php esc_attr_e( $service_title ); ?>" placeholder="<?php esc_attr_e( $label_title ); ?>">
+                            <input type="text" name="youzify_services[<?php echo $i; ?>][title]" value="<?php echo esc_attr( $service_title ); ?>" placeholder="<?php echo esc_attr( $label_title ); ?>">
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
-<?php do_action( 'youzify_account_before_content' ); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit; do_action( 'youzify_account_before_content' ); ?>
 
 <div id="youzify">
 

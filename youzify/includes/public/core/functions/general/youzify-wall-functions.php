@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Activity Shortcode - Ajax Pagination
@@ -33,7 +34,7 @@ function youzify_activity_load_activities() {
 
 	} else {
 		wp_send_json_error( array(
-			'message' => __( 'Sorry, there was no activity found.', 'bp-activity-shortcode' ),
+			'message' => __( 'Sorry, there was no activity found.', 'youzify' ),
 		) );
 	}
 
@@ -134,6 +135,7 @@ function youzify_wall_get_comment_button_title() {
 	// Get Comments Number.
 	$comments_nbr = bp_activity_get_comment_count();
 
+	/* translators: %s: number of comments */
 	$button_title = sprintf( _n( '<span>%s</span> <span class="stats-name">Comment</span>', '<span>%s</span> <span class="stats-name">Comments</span>', $comments_nbr, 'youzify' ), $comments_nbr );
 
 	echo apply_filters( 'youzify_wall_get_comment_button_title', $button_title, $comments_nbr );
@@ -524,7 +526,8 @@ function youzify_activity_share_count() {
 		return;
 	}
 
-	?><div class="youzify-post-shares-count youzify-trigger-who-modal" data-action="youzify_get_who_shared_post"><i class="far fa-share-square"></i><?php echo apply_filters( 'youzify_wall_get_share_button_title', sprintf( _n( '<span>%s</span> <span class="stats-name">Share</span>', '<span>%s</span> <span class="stats-name">Shares</span>', $share_count, 'youzify' ), $share_count ), $share_count ); ?></div><?php
+	?>
+	<div class="youzify-post-shares-count youzify-trigger-who-modal" data-action="youzify_get_who_shared_post"><i class="far fa-share-square"></i><?php /* translators: %s: number of shares */ echo apply_filters( 'youzify_wall_get_share_button_title', sprintf( _n( '<span>%s</span> <span class="stats-name">Share</span>', '<span>%s</span> <span class="stats-name">Shares</span>', $share_count, 'youzify' ), $share_count ), $share_count ); ?></div><?php
 }
 
 /**

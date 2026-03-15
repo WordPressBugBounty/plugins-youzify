@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Instagram Settings.
@@ -152,8 +153,10 @@ function youzify_get_instagram_app_register_steps() {
     $steps[] = __( '<strong><a>Note:</a> You should submit your application for review and it should be approved in order to make your website users able to use the instagram widget.</strong>', 'youzify' ) . '<br>';
 
     // Get Steps.
+    /* translators: %1s: Instagram widget setup tutorial URL */
     $steps[] = sprintf( __( '1. Check this topic on <a href="%1s">How to setup Instagram widget</a> for a detailed steps.', 'youzify' ), $apps_url );
     $steps[] = __( '2. Put the below URL as OAuth redirect_uri Authorized Redirect URLs:', 'youzify' );
+    /* translators: %s: redirect URL */
     $steps[] = sprintf( __( '3. Redirect URL: <strong><a>%s</a></strong>', 'youzify' ), $auth_url );
     return $steps;
 }

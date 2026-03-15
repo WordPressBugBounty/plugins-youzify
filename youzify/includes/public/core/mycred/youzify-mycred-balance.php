@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get User Balance
@@ -34,7 +35,7 @@ function youzify_mycred_get_user_balance_box( $user_id = null , $title = null, $
 			<?php endif; ?>
 			<span class="youzify-user-points"><?php echo $user_balance; ?></span>
 			<span class="youzify-user-points-slash">/</span>
-			<span class="youzify-user-points-title"><?php echo _n( $mycred->singular(), $mycred->plural(), $user_balance ); ?></span>
+			<span class="youzify-user-points-title"><?php echo esc_html( $user_balance == 1 ? $mycred->singular() : $mycred->plural() ); ?></span>
 		<?php endif; ?>
 
 		<?php
@@ -114,7 +115,7 @@ function youzify_get_md_mycred_statistics( $user_id ) {
 
     <?php if ( 'on' == youzify_option( 'youzify_enable_md_user_points_statistics', 'on' ) ) :  ?>
        	<?php $points = mycred_get_users_balance( $user_id ); ?>
-        <a href="<?php echo youzify_get_user_profile_page( 'mycred-history', $user_id ); ?>" class="youzify-data-item youzify-data-points" data-youzify-tooltip="<?php echo sprintf( _n( '%s Point', '%s Points', $points, 'youzify' ), $points ); ?>">
+        <a href="<?php echo youzify_get_user_profile_page( 'mycred-history', $user_id ); ?>" class="youzify-data-item youzify-data-points" data-youzify-tooltip="<?php /* translators: %s: number of points */ echo sprintf( _n( '%s Point', '%s Points', $points, 'youzify' ), $points ); ?>">
             <span class="dashicons dashicons-awards"></span>
         </a>
     <?php endif; ?>

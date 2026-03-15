@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * BuddyPress - Groups Admin - Group Cover Image Settings
  */

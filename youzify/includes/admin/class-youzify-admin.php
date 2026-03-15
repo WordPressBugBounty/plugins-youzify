@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Admin {
 
@@ -148,7 +149,9 @@ class Youzify_Admin {
             <div class="youzify-container">
                 <div class="youzify-review-image"><img src="<?php echo YOUZIFY_ADMIN_ASSETS . 'images/logo.png'; ?>" alt=""></div>
                 <div style="margin-left:30px">
-                    <?php printf(__("<p>Hi, Thanks a lot for choosing Youzify to be a part of your project — It's an honor!</p><p>In the past years we dedicated our lives by working day and night on Youzify doing our best to deliver high quality features and we are still constantly striving to provide ideal experience for our customers.</p><p>Online reviews from awesome customers like you help others feel confident about choosing Youzify, and will really help us grow our business. If you don't mind could you take a moment to leave us a 5-Star rating and a good review? I would really appreciate it. Thank you in advance for helping us out!</p><p>If you have any questions or feedback, %sdon't hesitate to leave us a message%s.</p>", 'youzify'),'<a href="https://youzify.com/contact" target="_blank" style="text-decoration: underline; color: #fff06e;">','</a>'); ?>
+                    <?php
+                    /* translators: %1$s: opening link tag, %2$s: closing link tag */
+                    printf( __( '<p>Hi, Thanks a lot for choosing Youzify to be a part of your project — It\'s an honor!</p><p>In the past years we dedicated our lives by working day and night on Youzify doing our best to deliver high quality features and we are still constantly striving to provide ideal experience for our customers.</p><p>Online reviews from awesome customers like you help others feel confident about choosing Youzify, and will really help us grow our business. If you don\'t mind could you take a moment to leave us a 5-Star rating and a good review? I would really appreciate it. Thank you in advance for helping us out!</p><p>If you have any questions or feedback, %1$sdon\'t hesitate to leave us a message%2$s.</p>', 'youzify' ), '<a href="https://youzify.com/contact" target="_blank" style="text-decoration: underline; color: #fff06e;">', '</a>' ); ?>
                     <i style="color: #ffeb3b;">- Youssef Kaine | KaineLabs CEO</i>
                     <div class="youzify-buttons-row">
                         <a class="button button-primary" target="_blank"
@@ -1125,7 +1128,7 @@ class Youzify_Admin {
 	        <div class="ukai-logo">
 	        	<img src="<?php echo YOUZIFY_ADMIN_ASSETS . 'images/logo.png'; ?>" alt="">
 	        </div>
-	        <a class="youzify-tab-extensions" href="<?php echo esc_url( apply_filters( 'youzify_panel_extensions_page_link', menu_page_url( 'youzify-extensions', false ) ) ); ?>"><i class="fas fa-plug"></i><?php _e( 'Extensions <span class="new">New</span>') ?></a>
+	        <a class="youzify-tab-extensions" href="<?php echo esc_url( apply_filters( 'youzify_panel_extensions_page_link', menu_page_url( 'youzify-extensions', false ) ) ); ?>"><i class="fas fa-plug"></i><?php _e( 'Extensions <span class="new">New</span>', 'youzify' ) ?></a>
 			<div class="kl-responsive-menu">
 				<?php _e( 'Menu', 'youzify' ); ?>
 				<input class="kl-toggle-btn" type="checkbox" id="kl-toggle-btn">
@@ -1259,6 +1262,7 @@ class Youzify_Admin {
         $Youzify_Settings->get_field(
             array(
                 'title'  => __( 'License Key', 'youzify' ),
+                /* translators: %s: URL to license key help article */
                 'desc'  => sprintf( __( '<a href="%s">How to find your product license key?</a>', 'youzify' ), 'https://kainelabs.ticksy.com/article/15685/' ),
                 'id'    => 'license',
                 'type'  => 'text',
@@ -1326,10 +1330,12 @@ class Youzify_Admin {
 		    echo '<div class="youzify-addon-expire-notice youzify-addon-license-' . $status . '">';
 
 		    if ( $status == 'expired' ) {
+		    	/* translators: %s: license expiration date */
 		    	echo sprintf( __( 'Your license key expired on %s.', 'youzify' ), $expiration_date );
 		    } elseif ( $status == 'lifetime' ) {
 		    	echo sprintf( __( 'Your license key is valid forever.', 'youzify' ), $expiration_date );
 			} else {
+		    	/* translators: %s: license expiration date */
 		    	echo sprintf( __( 'Your license key will expire on %s.', 'youzify' ), $expiration_date );
 			}
 
@@ -1391,6 +1397,7 @@ class Youzify_Admin {
 				switch( $license_data->error ) {
 
 					case 'expired' :
+						/* translators: %s: license expiration date */
 						$message = sprintf(
 							__( 'Your license key expired on %s.', 'youzify' ),
 							date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
@@ -1412,6 +1419,7 @@ class Youzify_Admin {
 						break;
 
 					case 'item_name_mismatch' :
+						/* translators: %s: product name */
 						$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'youzify' ), sanitize_text_field( $_POST['product_name'] ) );
 						break;
 
@@ -1472,6 +1480,7 @@ class Youzify_Admin {
 		$timefromdb = strtotime('now');//source time
 		$timeleft = $future-$timefromdb;
 		$daysleft = round((($timeleft/24)/60)/60);
+		/* translators: %d: number of days remaining */
 		$total_days = sprintf( _n( '%d DAY LEFT', '%d DAYS LEFT', $daysleft, 'youzify' ), $daysleft );
 
 		if ( $daysleft <= 0 ) {

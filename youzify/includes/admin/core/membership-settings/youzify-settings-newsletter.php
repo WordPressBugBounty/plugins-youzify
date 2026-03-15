@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Newsletter Settings
  */
@@ -15,6 +16,7 @@ function youzify_membership_newsletter_settings() {
             'msg_type'  => 'info',
             'type'      => 'msgBox',
             'id'        => 'youzify_msgbox_mailchimp',
+            /* translators: %s: MailChimp tutorial URL */
             'msg'       => sprintf( __( 'To learn how to get your API key and list id Visit the tutorial <strong><a href="%s">How to get MailChimp API key and list ID.</a></strong>', 'youzify' ), $tutorial_url )
         )
     );

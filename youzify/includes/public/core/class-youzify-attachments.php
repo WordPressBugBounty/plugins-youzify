@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Activity Attachments.
@@ -528,6 +529,7 @@ class Youzify_Attachments {
 			    		$max_files_number = youzify_option( 'youzify_attachments_max_nbr', 200 );
 
 			    		if ( $_POST['attachments_number'] > $max_files_number ) {
+			    			/* translators: %d: maximum number of files allowed */
 			    			wp_send_json_error( array( 'error' => sprintf( __( "You can't upload more than %d files.", 'youzify' ), $max_files_number ) ) );
 			    		}
 
@@ -535,6 +537,7 @@ class Youzify_Attachments {
 	    				$image_extensions = youzify_get_allowed_extensions( 'image' );
 
 		    			if ( ! in_array( $ext, $image_extensions ) ) {
+		    				/* translators: %1s: list of allowed image extensions */
 		    				wp_send_json_error( array( 'error' => sprintf( __( 'Invalid image extension.<br> Only %1s are allowed.', 'youzify' ), implode( ', ', $image_extensions ) ) ) );
 		    			}
 
@@ -546,6 +549,7 @@ class Youzify_Attachments {
 	    				$video_extensions = youzify_get_allowed_extensions( 'video' );
 
 		    			if ( ! in_array( $ext, $video_extensions ) ) {
+		    				/* translators: %1s: list of allowed video extensions */
 		    				wp_send_json_error( array( 'error' => sprintf( __( 'Invalid video extension.<br> Only %1s are allowed.', 'youzify' ), implode( ', ', $video_extensions ) ) ) );
 		    			}
 
@@ -557,6 +561,7 @@ class Youzify_Attachments {
 	    				$audio_extensions = youzify_get_allowed_extensions( 'audio' );
 
 		    			if ( ! in_array( $ext, $audio_extensions ) ) {
+		    				/* translators: %1s: list of allowed audio extensions */
 		    				wp_send_json_error( array( 'error' => sprintf( __( 'Invalid audio extension.<br> Only %1s are allowed.', 'youzify' ), implode( ', ', $audio_extensions ) ) ) );
 		    			}
 
@@ -568,6 +573,7 @@ class Youzify_Attachments {
 	    				$file_extensions = youzify_get_allowed_extensions( 'file' );
 
 		    			if ( ! in_array( $ext, $file_extensions ) ) {
+		    				/* translators: %1s: list of allowed file extensions */
 		    				wp_send_json_error( array( 'error' => sprintf( __( 'Invalid file extension.<br> Only %1s are allowed.', 'youzify' ), implode( ', ', $file_extensions ) ) ) );
 		    			}
 
@@ -585,6 +591,7 @@ class Youzify_Attachments {
 	    		$max_size = youzify_option( 'youzify_wall_comments_attachments_max_size', 10 );
 	    		$comments_extensions = youzify_option( 'youzify_wall_comments_attachments_extensions', array( 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx', 'pdf', 'rar', 'zip', 'mp4', 'mp3', 'wav', 'ogg', 'pfi' ) );
     			if ( ! in_array( $ext, $comments_extensions ) ) {
+    				/* translators: %1s: list of allowed file extensions */
     				wp_send_json_error( array( 'error' => sprintf( __( 'Invalid file extension.<br> Only %1s are allowed.', 'youzify' ), implode( ', ', $comments_extensions ) ) ) );
     			}
 
@@ -594,6 +601,7 @@ class Youzify_Attachments {
 	    		$max_size = youzify_option( 'youzify_messages_attachments_max_size', 10 );
 	    		$message_extensions = youzify_option( 'youzify_messages_attachments_extensions', array( 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx', 'pdf', 'rar', 'zip', 'mp4', 'mp3', 'wav', 'ogg', 'pfi' ) );
     			if ( ! in_array( $ext, $message_extensions ) ) {
+    				/* translators: %1s: list of allowed file extensions */
     				wp_send_json_error( array( 'error' => sprintf( __( 'Invalid file extension.<br> Only %1s are allowed.', 'youzify' ), implode( ', ', $message_extensions ) ) ) );
     			}
 
@@ -609,6 +617,7 @@ class Youzify_Attachments {
 
 		// Check that the file is not too big.
 	    if ( $file['size'] > $max_file_size ) {
+	    	/* translators: %g: maximum file size in megabytes */
 	    	wp_send_json_error( array( 'error' =>  sprintf( __( 'File too large. File must be less than %g megabytes.', 'youzify' ), $max_size ) ) );
 	    }
 
@@ -1077,6 +1086,7 @@ class Youzify_Attachments {
 
 			// Check that the file is not too big.
 		    if ( $file['size'] > $max_file_size ) {
+				/* translators: %d: maximum file size in megabytes */
 				wp_send_json_error( array( 'error' => sprintf( esc_html__( 'File too large. File must be less than %d megabytes.', 'youzify' ), $max_size ) ) );
 		    }
 
@@ -1087,10 +1097,12 @@ class Youzify_Attachments {
 
 			// Check Image Minimum Width.
 			if ( $get_image_size[0] < $min[ 'width' ] ) {
+				/* translators: %d: minimum image width in pixels */
 				wp_send_json_error( array( 'error' => sprintf( esc_html__( 'Image minimum width is %d pixel.', 'youzify' ), $min['width'] ) ) );
 			}
 			// Check Image Minimum Height.
 			if ( $get_image_size[1] < $min[ 'height' ] ) {
+				/* translators: %d: minimum image height in pixels */
 				wp_send_json_error( array( 'error' => sprintf( esc_html__( 'Image minimum height is %d pixel.', 'youzify' ), $min['height'] ) ) );
 			}
 

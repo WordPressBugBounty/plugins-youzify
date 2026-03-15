@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Wall Media
  */
@@ -446,7 +447,7 @@ class Youzify_Media {
         if ( ( isset( $data['user_id'] ) || isset( $data['group_id'] ) ) && isset( $data['view_all'] ) ) {
             $total = $this->get_media( array_merge( $data, array( 'query' => 'count' ) ) );
             if ( $total > $data['limit'] ) { ?>
-            <a class="youzify-media-view-all" href="<?php echo esc_url( $this->get_media_by_type_slug( $data ) ); ?>"><?php echo sprintf( __( 'View All %1s ( %2d )', 'youzify' ), $data['title'], $total ); ?></a>
+            <a class="youzify-media-view-all" href="<?php echo esc_url( $this->get_media_by_type_slug( $data ) ); ?>"><?php /* translators: %1$s: media type title, %2$d: total media count */ echo sprintf( __( 'View All %1$s ( %2$d )', 'youzify' ), $data['title'], $total ); ?></a>
             <?php }
         }
 

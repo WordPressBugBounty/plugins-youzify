@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Group Notifications Widget
@@ -41,7 +42,7 @@ class Youzify_Notifications_Widget extends WP_Widget {
 
 		<!-- Notifications Number. -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Notifications Limit:', 'bp-group-suggest' ); ?>
+			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Notifications Limit:', 'youzify' ); ?>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo esc_attr( $limit ); ?>" style="width: 30%">
 			</label>
 		</p>
@@ -126,7 +127,7 @@ class Youzify_Notifications_Widget extends WP_Widget {
 
         <?php if ( $notifications_nbr > $args['limit'] ) : ?>
             <div class="youzify-more-items">
-                <a href="<?php echo bp_nav_menu_get_item_url( bp_get_notifications_slug() ); ?>"><i class="far fa-bell"></i><?php echo sprintf( __( 'Show All Notifications ( %s )', 'youzify' ), $notifications_nbr ); ?></a>
+                <a href="<?php echo bp_nav_menu_get_item_url( bp_get_notifications_slug() ); ?>"><i class="far fa-bell"></i><?php /* translators: %s: total number of notifications */ echo sprintf( __( 'Show All Notifications ( %s )', 'youzify' ), $notifications_nbr ); ?></a>
             </div>
         <?php endif; ?>
 

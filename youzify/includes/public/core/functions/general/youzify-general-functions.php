@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Set Default ProfileTab.
@@ -850,7 +851,8 @@ function youzify_get_pages() {
 
     // Add Wordpress Pages
     foreach ( $wp_pages as $page ) {
-        $pages[ $page->ID ] = sprintf( __( '%1s ( ID : %2d )', 'youzify' ), $page->post_title, $page->ID );
+        /* translators: %1$s: page title, %2$d: page ID */
+        $pages[ $page->ID ] = sprintf( __( '%1$s ( ID : %2$d )', 'youzify' ), $page->post_title, $page->ID );
     }
 
     return $pages;

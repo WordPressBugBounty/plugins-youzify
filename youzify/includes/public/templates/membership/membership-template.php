@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /*
  * Template Name: Membership Template
  * Description: Membership Plugin Pages Template.

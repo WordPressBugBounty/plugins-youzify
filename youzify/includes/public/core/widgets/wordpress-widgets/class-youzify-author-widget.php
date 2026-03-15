@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Static Author Box Widget
@@ -82,7 +83,7 @@ class Youzify_Author_Widget extends WP_Widget {
 			<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php esc_attr_e( 'Author Box Layout', 'youzify' ); ?></label>
 	        <select id="<?php echo $this->get_field_id( 'layout' ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'layout' ) ); ?>" class="widefat" style="width:100%;">
 	            <?php for ( $i = 1; $i <= 6; $i++ ) {?>
-	            	<option <?php selected( $instance['layout'], 'youzify-author-v' . $i ); ?> value="<?php echo 'youzify-author-v' . $i; ?>"><?php echo sprintf( __( 'Layout Version %d', 'youzify' ), $i ); ?></option>
+	            	<option <?php selected( $instance['layout'], 'youzify-author-v' . $i ); ?> value="<?php echo 'youzify-author-v' . $i; ?>"><?php /* translators: %d: layout version number */ echo sprintf( __( 'Layout Version %d', 'youzify' ), $i ); ?></option>
 	            <?php } ?>
 	        </select>
 	    </p>

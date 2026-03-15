@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Posts_Tab {
 
@@ -220,6 +221,7 @@ class Youzify_Posts_Tab {
 		if ( $paginate_links ) {
 			echo sprintf( '<nav class="youzify-pagination" data-base="%1s">' , $base );
 			echo '<span class="youzify-pagination-pages">';
+			/* translators: %1$d: current page number, %2$d: total number of pages */
 			printf( __( 'Page %1$d of %2$d', 'youzify' ), $paged, $numpages );
 			echo "</span><div class='posts-nav-links youzify-nav-links'>$paginate_links</div></nav>";
 		}

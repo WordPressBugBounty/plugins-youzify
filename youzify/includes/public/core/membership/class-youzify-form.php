@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Membership_Form {
 
@@ -449,6 +450,7 @@ class Youzify_Membership_Form {
 			$required_fields = json_decode( youzify_membership_user_session_data( 'get' ), true );
 
 			if ( isset( $required_fields['email'] ) ) {
+				/* translators: %s: social login provider name */
 				$errors[] = sprintf( __( "- %s didn't provide us with your email.", 'youzify' ), $required_fields['provider'] );
 			}
 
@@ -461,7 +463,8 @@ class Youzify_Membership_Form {
 			if ( ! isset( $_GET['register-errors'] ) ) {
 				$fields[] = array(
 					'item' 	=> 'note',
-					'note'	=> sprintf( __( "<strong>Note:</strong> We couldn't get the information below : <br> %s", 'youzify' ), $erros_msg )
+					/* translators: %s: list of missing required fields */
+				'note'	=> sprintf( __( "<strong>Note:</strong> We couldn't get the information below : <br> %s", 'youzify' ), $erros_msg )
 				);
 			}
 

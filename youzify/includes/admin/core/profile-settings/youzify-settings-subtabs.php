@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get Third Party Tabs Settings.
@@ -10,7 +11,7 @@ function youzify_profile_subtabs_settings() {
 
     if ( empty( $primary_tabs ) ) {
         // Get Message.
-        $no_subtabs = __( 'Sorry, no subtabs settings exists!' );
+        $no_subtabs = __( 'Sorry, no subtabs settings exists!', 'youzify' );
         // Print Message.
         echo '<p class="youzify-no-content">' . $no_subtabs . '</p>';
         return false;
@@ -53,6 +54,7 @@ function youzify_third_party_subtabs_settings( $tabs, $primary_tab ) {
 
     $Youzify_Settings->get_field(
         array(
+            /* translators: %s: primary tab name */
             'title' => sprintf( __( '%s Subtabs Settings', 'youzify' ), $primary_name ),
             'type'  => 'openBox'
         )
@@ -71,7 +73,9 @@ function youzify_third_party_subtabs_settings( $tabs, $primary_tab ) {
                 'std' => 'fas fa-globe',
                 'type'  => 'icon',
                 'id'    => $tab_id,
+                /* translators: %s: tab name */
                 'title' => sprintf( __( '%s Icon', 'youzify' ), $tab_name ),
+                /* translators: %s: tab name */
                 'desc' => sprintf( __( '%s tab icon', 'youzify' ), $tab_name ),
             )
         );

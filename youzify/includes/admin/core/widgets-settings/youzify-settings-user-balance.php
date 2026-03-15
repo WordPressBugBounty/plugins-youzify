@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * User Balance Settings.
@@ -15,7 +16,8 @@ function youzify_user_balance_widget_settings() {
                 'type'      => 'msgBox',
                 'id'        => 'youzify_msgbox_user_balance_widget_notice',
                 'title'     => __( 'How to activate user balance widget?', 'youzify' ),
-                'msg'       => sprintf( __( 'Please install the <a href="%1s"> MyCRED Plugin</a> or <a href="%2s"> GamiPress Plugin</a> to activate the user balance widget.' , 'youzify' ), 'https://wordpress.org/plugins/mycred/', 'https://wordpress.org/plugins/gamipress/' )
+                /* translators: %1s: MyCRED plugin URL, %2s: GamiPress plugin URL */
+                'msg'       => sprintf( __( 'Please install the <a href="%1$s"> MyCRED Plugin</a> or <a href="%2$s"> GamiPress Plugin</a> to activate the user balance widget.' , 'youzify' ), 'https://wordpress.org/plugins/mycred/', 'https://wordpress.org/plugins/gamipress/' )
             )
         );
 

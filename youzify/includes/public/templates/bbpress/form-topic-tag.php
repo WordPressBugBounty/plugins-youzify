@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Edit Topic Tag
@@ -75,6 +76,7 @@
 					</div>
 
 					<div class="bbp-submit-wrapper">
+						<?php /* translators: %s: topic tag name */ ?>
 						<button type="submit" tabindex="<?php bbp_tab_index(); ?>" class="button submit" onclick="return confirm('<?php echo esc_js( sprintf( __( 'Are you sure you want to merge the "%s" tag into the tag you specified?', 'youzify' ), bbp_get_topic_tag_name() ) ); ?>');"><i class="fas fa-random"></i><?php esc_attr_e( 'Merge', 'youzify' ); ?></button>
 
 						<input type="hidden" name="tag-id" value="<?php bbp_topic_tag_id(); ?>" />
@@ -103,6 +105,7 @@
 					<form id="delete_tag" name="delete_tag" method="post" action="<?php the_permalink(); ?>">
 
 						<div class="bbp-submit-wrapper">
+							<?php /* translators: %s: topic tag name */ ?>
 							<button type="submit" tabindex="<?php bbp_tab_index(); ?>" class="button submit" onclick="return confirm('<?php echo esc_js( sprintf( __( 'Are you sure you want to delete the "%s" tag? This is permanent and cannot be undone.', 'youzify' ), bbp_get_topic_tag_name() ) ); ?>');"><i class="fas fa-trash-alt"></i><?php esc_attr_e( 'Delete', 'youzify' ); ?></button>
 
 							<input type="hidden" name="tag-id" value="<?php bbp_topic_tag_id(); ?>" />

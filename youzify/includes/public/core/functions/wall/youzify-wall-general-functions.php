@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Wall- Status Action
@@ -34,6 +35,7 @@ function youzify_activity_action_wall_posts( $action, $activity ) {
 
 			// Add Group Description.
 			if ( youzify_wall_is_group_post( $activity ) ) {
+				/* translators: %1s: user profile link */
 				$action =  sprintf( __( '%1s posted', 'youzify' ), $user_link );
 			} else {
 				$action = $user_link;
@@ -43,6 +45,7 @@ function youzify_activity_action_wall_posts( $action, $activity ) {
 
 		case 'new_cover':
 			$action = sprintf(
+				/* translators: %1s: user profile link */
 				__( '%1s Changed their profile cover', 'youzify' ), $user_link );
 			break;
 
@@ -58,6 +61,7 @@ function youzify_activity_action_wall_posts( $action, $activity ) {
 		bp_is_active( 'groups' ) && 'groups' == $activity->component && ! bp_is_groups_component() &&
 		! in_array( $activity->type, $hide_group_description ) ) {
 		$group = groups_get_group( $activity->item_id );
+		/* translators: %1s: group link */
 		$action .= sprintf( __( ' in the group %1s', 'youzify' ), '<a href="' . bp_get_group_url( $group ) . '">' . esc_attr( $group->name ) . '</a>' );
 	} else {
 		$mood = apply_filters( 'youzify_activity_post_mood', false, $activity );
@@ -333,6 +337,7 @@ function youzify_edit_new_blog_action( $action , $activity ) {
 	$user_link = bp_core_get_userlink( $activity->user_id );
 
 	// Get Action
+	/* translators: %1s: user profile link */
 	$action = sprintf( __( '%1s wrote a new post', 'youzify' ), $user_link );
 
 	return $action;
@@ -350,6 +355,7 @@ function youzify_edit_activity_post_action( $action , $activity ) {
 
 	// Add Group Description.
 	if ( youzify_wall_is_group_post( $activity ) ) {
+		/* translators: %1s: user profile link */
 		$action =  sprintf( __( '%1s posted', 'youzify' ), $user_link );
 	} else {
 		$action = $user_link;
@@ -552,7 +558,7 @@ function youzify_get_activity_time_stamp_meta( $activity = false ) {
         $activity_meta      = sprintf( '%1$s <a href="%2$s" class="view activity-time-since bp-tooltip" data-bp-tooltip="%3$s">%4$s</a>',
             $new_content,
             $activity_permalink,
-            esc_attr__( 'View Discussion', 'buddypress' ),
+            esc_attr__( 'View Discussion', 'youzify' ),
             $time_since
         );
 

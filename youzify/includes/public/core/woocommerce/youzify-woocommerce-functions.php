@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Add Product to Activity Stream.
 add_action( 'transition_post_status', 'youzify_wc_add_new_product_activity' , 10, 3 );
@@ -17,6 +18,7 @@ function youzify_wc_add_new_product_activity( $new_status, $old_status, $post ) 
     $user_link = bp_core_get_userlink( $post->post_author );
 
     // Get Activity Action.
+    /* translators: %s: user profile link */
     $action = apply_filters( 'youzify_new_wc_product_action', sprintf( __( '%s added new product', 'youzify' ), $user_link ), $post->ID );
 
     // record the activity
@@ -81,7 +83,8 @@ function youzify_wc_add_new_order_activity( $order_id ) {
 		/**
 		 * Modify the string to insert into the BuddyPress Activity Stream on Order Complete
 		 */
-		$action = apply_filters( 'youzify_new_wc_purchase_action', sprintf( __( '%s purchased %s', 'youzify' ), $user_link, $product_name ), $order, $items );
+		/* translators: %1$s: user profile link, %2$s: product name link */
+		$action = apply_filters( 'youzify_new_wc_purchase_action', sprintf( __( '%1$s purchased %2$s', 'youzify' ), $user_link, $product_name ), $order, $items );
 
 		// record the activity
 		bp_activity_add( array(

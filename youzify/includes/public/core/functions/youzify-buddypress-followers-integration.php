@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get Users Follow Button !
@@ -93,7 +94,7 @@ function youzify_get_md_follows_statistics( $user_id ) {
 
 	if ( 'on' == youzify_option( 'youzify_enable_md_user_followers_statistics', 'on' ) ) :  ?>
        	<?php $followers_nbr = bp_follow_get_the_followers_count( array( 'object_id' => $user_id ) ); ?>
-        <a href="<?php echo youzify_get_user_profile_page( 'follows/followers', $user_id ); ?>" class="youzify-data-item youzify-data-followers" data-youzify-tooltip="<?php echo sprintf( _n( '%s Follower', '%s Followers', $followers_nbr, 'youzify' ), $followers_nbr ); ?>">
+        <a href="<?php echo youzify_get_user_profile_page( 'follows/followers', $user_id ); ?>" class="youzify-data-item youzify-data-followers" data-youzify-tooltip="<?php /* translators: %s: number of followers */ echo sprintf( _n( '%s Follower', '%s Followers', $followers_nbr, 'youzify' ), $followers_nbr ); ?>">
             <span class="dashicons dashicons-rss"></span>
         </a>
     <?php
@@ -102,7 +103,7 @@ function youzify_get_md_follows_statistics( $user_id ) {
 
     if ( 'on' == youzify_option( 'youzify_enable_md_user_following_statistics', 'on' ) ) :  ?>
        	<?php $following_nbr = bp_follow_get_the_following_count( array( 'object_id' => $user_id ) ); ?>
-        <a href="<?php echo youzify_get_user_profile_page( 'follows/following', $user_id ); ?>" class="youzify-data-item youzify-data-following" data-youzify-tooltip="<?php echo sprintf( __( '%s Following', 'youzify' ) , $following_nbr ); ?>">
+        <a href="<?php echo youzify_get_user_profile_page( 'follows/following', $user_id ); ?>" class="youzify-data-item youzify-data-following" data-youzify-tooltip="<?php /* translators: %s: number of users following */ echo sprintf( __( '%s Following', 'youzify' ) , $following_nbr ); ?>">
             <span class="dashicons dashicons-redo"></span>
         </a>
     <?php

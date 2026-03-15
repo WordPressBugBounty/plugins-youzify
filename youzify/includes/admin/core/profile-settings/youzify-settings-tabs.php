@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Tabs Settings.
@@ -114,6 +115,7 @@ function youzify_custom_buddypress_tabs_settings( $custom_tabs ) {
 
         $Youzify_Settings->get_field(
             array(
+                /* translators: %s: tab name */
                 'title' => sprintf( __( '%s Tab', 'youzify' ), $tab_name ),
                 'class' => 'ukai-box-3cols kl-accordion-box',
                 'type'  => 'openBox',
@@ -129,6 +131,7 @@ function youzify_custom_buddypress_tabs_settings( $custom_tabs ) {
                 'std'   => youzify_admin_get_tab_option_value( $tab_slug, 'visibility', $default_visibility ),
                 'id'    => 'visibility',
                 'title' => sprintf( __( 'Display Tab', 'youzify' ), $tab_name ),
+                /* translators: %s: tab name */
                 'desc'  => sprintf( __( 'Show %s tab', 'youzify' ), $tab_name ),
             ), false, 'youzify_profile_tabs[' . $tab_slug .']'
         );
@@ -140,7 +143,9 @@ function youzify_custom_buddypress_tabs_settings( $custom_tabs ) {
                 'type'  => 'icon',
                 'std'   => youzify_admin_get_tab_option_value( $tab_slug, 'icon', $default_icon ),
                 'id'    => 'icon',
+                /* translators: %s: tab name */
                 'title' => sprintf( __( '%s Icon', 'youzify' ), $tab_name ),
+                /* translators: %s: tab name */
                 'desc'  => sprintf( __( '%s tab icon', 'youzify' ), $tab_name ),
             ), false, 'youzify_profile_tabs[' . $tab_slug .']'
         );
@@ -150,7 +155,9 @@ function youzify_custom_buddypress_tabs_settings( $custom_tabs ) {
                 'type'  => 'text',
                 'std'   => youzify_admin_get_tab_option_value( $tab_slug, 'name', $tab_name ),
                 'id'    => 'name',
+                /* translators: %s: tab name */
                 'title' => sprintf( __( '%s Title', 'youzify' ), $tab_name ),
+                /* translators: %s: tab name */
                 'desc' => sprintf( __( '%s tab title', 'youzify' ), $tab_name ),
             ), false, 'youzify_profile_tabs[' . $tab_slug .']'
         );
@@ -160,7 +167,9 @@ function youzify_custom_buddypress_tabs_settings( $custom_tabs ) {
                 'id'    => 'position',
                 'type'  => 'number',
                 'std'   => youzify_admin_get_tab_option_value( $tab_slug, 'position', $tab['position'] ),
+                /* translators: %s: tab name */
                 'title' => sprintf( __( '%s Order', 'youzify' ), $tab_name ),
+                /* translators: %s: tab name */
                 'desc'  => sprintf( __( '%s tab order', 'youzify' ), $tab_name ),
             ), false, 'youzify_profile_tabs[' . $tab_slug .']'
         );
@@ -173,6 +182,7 @@ function youzify_custom_buddypress_tabs_settings( $custom_tabs ) {
                     'type'  => 'checkbox',
                     'id'    => 'deleted',
                     'title' => sprintf( __( 'Delete Tab', 'youzify' ), $tab_name ),
+                    /* translators: %s: tab name */
                     'desc'  => sprintf( __( 'Delete %s tab', 'youzify' ), $tab_name ),
                 ), false, 'youzify_profile_tabs[' . $tab_slug .']'
             );

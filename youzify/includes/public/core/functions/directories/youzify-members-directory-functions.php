@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Add Members Directory Header
@@ -227,28 +228,28 @@ function youzify_get_member_statistics_data( $user_id ) {
 
         <?php if ( 'on' == youzify_option( 'youzify_enable_md_user_posts_statistics', 'on' ) ) : ?>
             <?php $posts_nbr = youzify_get_user_posts_nbr( $user_id ); ?>
-        <a <?php if (  $posts_nbr > 0 ) { ?> href="<?php echo youzify_get_user_profile_page( 'posts', $user_id ); ?>" <?php } ?> class="youzify-data-item youzify-data-posts" data-youzify-tooltip="<?php echo sprintf( _n( '%s Post', '%s Posts', $posts_nbr, 'youzify' ), $posts_nbr ); ?>">
+        <a <?php if (  $posts_nbr > 0 ) { ?> href="<?php echo youzify_get_user_profile_page( 'posts', $user_id ); ?>" <?php } ?> class="youzify-data-item youzify-data-posts" data-youzify-tooltip="<?php /* translators: %s: number of posts */ echo sprintf( _n( '%s Post', '%s Posts', $posts_nbr, 'youzify' ), $posts_nbr ); ?>">
             <span class="dashicons dashicons-edit"></span>
         </a>
         <?php endif; ?>
 
         <?php if ( 'on' == youzify_option( 'youzify_enable_md_user_comments_statistics', 'on' ) ) : ?>
             <?php $comments_nbr = youzify_get_comments_number( $user_id );  ?>
-        <a <?php if (  $comments_nbr > 0 ) { ?>  href="<?php echo youzify_get_user_profile_page( 'comments', $user_id ); ?>" <?php } ?> class="youzify-data-item youzify-data-comments" data-youzify-tooltip="<?php echo sprintf( _n( '%s Comment', '%s Comments', $comments_nbr, 'youzify' ), $comments_nbr ); ?>">
+        <a <?php if (  $comments_nbr > 0 ) { ?>  href="<?php echo youzify_get_user_profile_page( 'comments', $user_id ); ?>" <?php } ?> class="youzify-data-item youzify-data-comments" data-youzify-tooltip="<?php /* translators: %s: number of comments */ echo sprintf( _n( '%s Comment', '%s Comments', $comments_nbr, 'youzify' ), $comments_nbr ); ?>">
             <span class="dashicons dashicons-format-status"></span>
         </a>
         <?php endif; ?>
 
         <?php if ( 'on' == youzify_option( 'youzify_enable_md_user_views_statistics', 'on' ) ) : ?>
             <?php $views_nbr = get_user_meta( $user_id, 'youzify_profile_views_count', true ); if ( ! $views_nbr ) $views_nbr = 0; ?>
-        <a href="<?php echo bp_member_permalink(); ?>" class="youzify-data-item youzify-data-vues" data-youzify-tooltip="<?php echo sprintf( _n( '%s View', '%s Views', $views_nbr, 'youzify' ), $views_nbr ); ?>">
+        <a href="<?php echo bp_member_permalink(); ?>" class="youzify-data-item youzify-data-vues" data-youzify-tooltip="<?php /* translators: %s: number of profile views */ echo sprintf( _n( '%s View', '%s Views', $views_nbr, 'youzify' ), $views_nbr ); ?>">
             <span class="dashicons dashicons-welcome-view-site"></span>
         </a>
         <?php endif; ?>
 
         <?php if ( 'on' == youzify_option( 'youzify_enable_md_user_friends_statistics', 'on' ) && bp_is_active( 'friends' ) ) :  ?>
 	       <?php $friends_nbr = friends_get_total_friend_count( $user_id ); ?>
-            <a href="<?php echo youzify_get_user_profile_page( 'friends', $user_id ); ?>" class="youzify-data-item youzify-data-friends" data-youzify-tooltip="<?php echo sprintf( _n( '%s Friend', '%s Friends', $friends_nbr, 'youzify' ), $friends_nbr ); ?>">
+            <a href="<?php echo youzify_get_user_profile_page( 'friends', $user_id ); ?>" class="youzify-data-item youzify-data-friends" data-youzify-tooltip="<?php /* translators: %s: number of friends */ echo sprintf( _n( '%s Friend', '%s Friends', $friends_nbr, 'youzify' ), $friends_nbr ); ?>">
                 <span class="dashicons dashicons-groups"></span>
             </a>
         <?php endif; ?>
@@ -380,7 +381,7 @@ function youzify_add_members_directory_types_tabs() {
             }
 
         ?>
-        <li id="members-<?php echo $type_id; ?>" class="yzmt-directory-tab"><?php youzify_add_member_types_tab_syling( $type_id, $member_type->db_id ); ?><a href="<?php echo bp_member_type_directory_permalink( $type_id ); ?>"><?php if ( class_exists( 'Youzify' ) ) echo '<i class="' . get_term_meta( $member_type->db_id, 'youzify_type_icon', true ) .'"></i>'; printf( __( '%1s %2s', 'youzify-member-types' ), $member_type->labels['name'], '<span>' . apply_filters( 'youzify_member_types_count', $count, $type_id ) . '</span>' ); ?></a></li>
+        <li id="members-<?php echo $type_id; ?>" class="yzmt-directory-tab"><?php youzify_add_member_types_tab_syling( $type_id, $member_type->db_id ); ?><a href="<?php echo bp_member_type_directory_permalink( $type_id ); ?>"><?php if ( class_exists( 'Youzify' ) ) echo '<i class="' . get_term_meta( $member_type->db_id, 'youzify_type_icon', true ) .'"></i>'; /* translators: %1$s: member type name, %2$s: member count badge */ printf( __( '%1$s %2$s', 'youzify' ), $member_type->labels['name'], '<span>' . apply_filters( 'youzify_member_types_count', $count, $type_id ) . '</span>' ); ?></a></li>
 
         <?php
     }

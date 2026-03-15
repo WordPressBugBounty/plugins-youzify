@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get Available Social Providers.
@@ -43,7 +44,7 @@ function youzify_get_social_login_box( $attrs = null ) {
 						</div>
 						<?php if ( 'form-only-icons' != $btns_type ) : ?>
 							<span class="youzify-membership-button-title">
-							<?php echo sprintf( __( 'Connect with %s', 'youzify' ), $provider );?>
+							<?php /* translators: %s: social network provider name */ echo sprintf( __( 'Connect with %s', 'youzify' ), $provider );?>
 							</span>
 						<?php endif; ?>
 					</a>

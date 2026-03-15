@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get Xprofile Group Icon
@@ -945,7 +946,7 @@ function youzify_media_shortcode( $atts ) {
 
                 <?php $total = $media->get_media( youzify_array_merge( $args, array( 'query' => 'count' ) ) ); ?>
                 <?php if ( ( isset( $args['user_id'] ) || isset( $args['group_id'] ) ) && $total > $available_filters[ $default_type ]['limit'] ) : ?>
-                <a class="youzify-media-view-all" href="<?php echo esc_url( $media->get_media_by_type_slug( $args ) ); ?>"><?php echo sprintf( __( 'View All %1s ( %2d )', 'youzify' ), $available_filters[ $default_type ]['title'], $total ); ?></a>
+                <a class="youzify-media-view-all" href="<?php echo esc_url( $media->get_media_by_type_slug( $args ) ); ?>"><?php /* translators: %1$s: media type title, %2$d: total media count */ echo sprintf( __( 'View All %1$s ( %2$d )', 'youzify' ), $available_filters[ $default_type ]['title'], $total ); ?></a>
                 <?php endif; ?>
                 </div>
 

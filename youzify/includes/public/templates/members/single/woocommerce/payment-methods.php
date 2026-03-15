@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 	/**
 	 * WC Payment Methods Template
 	 */

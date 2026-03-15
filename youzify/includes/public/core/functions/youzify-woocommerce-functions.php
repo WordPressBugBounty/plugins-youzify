@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get Woomcommerce Supported Pages
@@ -652,7 +653,7 @@ function youzify_get_woocommerce_product( $product = false ) {
 
                     <?php if ( ! empty( $product['featured'] ) ) : ?><a class="youzify-product-type youzify-featured-product"><?php echo __( 'Featured Product', 'youzify' ); ?></a><?php endif; ?>
 
-                    <?php if ( apply_filters( 'youzify_display_product_sale_save' , true ) && ! empty( $product['sale_save'] ) ) : ?><a class="youzify-product-type youzify-sale-save"><?php echo sprintf( __( 'Save %1s ', 'youzify' ), $product['sale_save'] ); ?></a><?php endif; ?>
+                    <?php if ( apply_filters( 'youzify_display_product_sale_save' , true ) && ! empty( $product['sale_save'] ) ) : ?><a class="youzify-product-type youzify-sale-save"><?php /* translators: %1s: sale discount amount */ echo sprintf( __( 'Save %1s ', 'youzify' ), $product['sale_save'] ); ?></a><?php endif; ?>
 
                     <h2 class="youzify-product-title">
                     	<a href="<?php echo $product['link']; ?>"><?php echo $product['title']; ?></a>
@@ -673,7 +674,7 @@ function youzify_get_woocommerce_product( $product = false ) {
                             <?php endif; ?>
 
                             <?php if ( apply_filters( 'youzify_display_product_sales' , true ) ) : ?>
-                                <li><?php echo '<i class="fas fa-shopping-cart"></i>' . sprintf( _n( '%s Sale', '%s Sales', $product['sales'], 'youzify' ), $product['sales'] );; ?></li>
+                                <li><?php /* translators: %s: number of product sales */ echo '<i class="fas fa-shopping-cart"></i>' . sprintf( _n( '%s Sale', '%s Sales', $product['sales'], 'youzify' ), $product['sales'] );; ?></li>
                             <?php endif; ?>
 
                             <?php if ( apply_filters( 'youzify_display_product_stock_status' , true ) && ! empty( $product['stock_status'] ) ) : ?>

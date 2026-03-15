@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * User Account Menu Widget
@@ -131,7 +132,7 @@ class Youzify_My_Account_Widget extends WP_Widget {
 	        	<?php if ( bp_is_active( 'messages' ) && 'off' == $hide_links['messages']['hide'] ) : ?>
 
 	            	<?php $msgs_nbr = bp_get_total_unread_messages_count(); ?>
-	            	<?php $msg_title = ( $msgs_nbr > 0 ) ? sprintf( __( 'Messages %s' , 'youzify' ), '<span class="youzify-link-count">' . $msgs_nbr . '</span>' ) : __( 'Messages' , 'youzify' ); ?>
+	            	<?php /* translators: %s: unread messages count badge */ $msg_title = ( $msgs_nbr > 0 ) ? sprintf( __( 'Messages %s' , 'youzify' ), '<span class="youzify-link-count">' . $msgs_nbr . '</span>' ) : __( 'Messages' , 'youzify' ); ?>
 
 					<a href="<?php echo bp_nav_menu_get_item_url( bp_get_messages_slug() ); ?>" class="youzify-link-item youzify-link-inbox">
 						<i class="fas fa-inbox"></i>
@@ -144,7 +145,7 @@ class Youzify_My_Account_Widget extends WP_Widget {
 
 		            <?php $notification_nbr = bp_notifications_get_unread_notification_count(); ?>
 
-					<?php $notifications_title = ( $notification_nbr > 0 ) ? sprintf( __( 'Notifications %s' , 'youzify' ), '<span class="youzify-link-count">' . $notification_nbr . '</span>' ) : __( 'Notifications' , 'youzify' ); ?>
+					<?php /* translators: %s: unread notifications count badge */ $notifications_title = ( $notification_nbr > 0 ) ? sprintf( __( 'Notifications %s' , 'youzify' ), '<span class="youzify-link-count">' . $notification_nbr . '</span>' ) : __( 'Notifications' , 'youzify' ); ?>
 
 					<a href="<?php echo bp_nav_menu_get_item_url( bp_get_notifications_slug() ); ?>" class="youzify-link-item youzify-link-notifications">
 						<i class="fas fa-bell"></i>
@@ -167,7 +168,7 @@ class Youzify_My_Account_Widget extends WP_Widget {
 
 						<a href="<?php echo $requests_link; ?>" class="youzify-link-item youzify-link-friendship-requests">
 							<i class="fas fa-handshake"></i>
-							<div class="youzify-link-title"><?php echo sprintf( __( 'Friendship Requests %s' , 'youzify' ), '<span class="youzify-link-count">' . $friend_requests . '</span>' ); ?></div>
+							<div class="youzify-link-title"><?php /* translators: %s: friendship requests count badge */ echo sprintf( __( 'Friendship Requests %s' , 'youzify' ), '<span class="youzify-link-count">' . $friend_requests . '</span>' ); ?></div>
 						</a>
 
 					<?php endif; ?>

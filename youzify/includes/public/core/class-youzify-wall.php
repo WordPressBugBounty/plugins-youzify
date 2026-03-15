@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Wall {
 
@@ -106,7 +107,7 @@ class Youzify_Wall {
 				$place_id = bp_activity_get_meta( $activity->id, 'youzify_checkin_place_id' );
 
 				if ( ! empty( $place_id ) ) {
-					$content .= '<div class="youzify-activity-map-unloaded" data-place_id="' . $place_id . '"></div>';
+					$content .= '<div class="youzify-activity-map-unloaded" data-place_id="' . esc_attr( $place_id ) . '"></div>';
 				}
 
 			}
@@ -827,7 +828,7 @@ class Youzify_Wall {
 		 			<div class="youzify-embed-meta">
 		 				<div class="youzify-embed-meta-item"><?php echo youzify_get_group_status( $group->status ); ?></div>
 		 				<div class="youzify-embed-meta-item">
-		 					<i class="fas fa-users"></i><span><?php echo sprintf( _n( '%s Member', '%s Members', $members_count, 'youzify' ), bp_core_number_format( $members_count ) ); ?></span>
+		 					<i class="fas fa-users"></i><span><?php /* translators: %s: number of group members */ echo sprintf( _n( '%s Member', '%s Members', $members_count, 'youzify' ), bp_core_number_format( $members_count ) ); ?></span>
 		 				</div>
 		 			</div>
 	 			</div>
@@ -1108,6 +1109,7 @@ class Youzify_Wall {
 	        wp_enqueue_script( 'youzify-wall-form', YOUZIFY_ASSETS . 'js/youzify-wall-form.min.js', $wall_jquery, YOUZIFY_VERSION, true );
 
 	        $wall_args = apply_filters( 'Youzify_wall_js_args', array(
+                /* translators: %d: maximum number of poll options */
                 'poll_max_options'  => __( 'The max number of allowed options is %d.', 'youzify' ),
                 'max_one_file'      => __( "You can't upload more than one file.", 'youzify' ),
                 'base_url'          => $Youzify_upload_url,

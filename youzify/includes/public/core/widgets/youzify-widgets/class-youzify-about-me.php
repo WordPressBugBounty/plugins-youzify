@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Profile_About_Me_Widget {
 
@@ -33,8 +34,8 @@ class Youzify_Profile_About_Me_Widget {
 
                 <?php if ( $title || $description ) : ?>
     			<div class="youzify-aboutme-head">
-    				<h2 class="youzify-aboutme-name"><?php esc_attr_e( $title ); ?></h2>
-    				<h2 class="youzify-aboutme-description"><?php esc_attr_e( $description ); ?></h2>
+    				<h2 class="youzify-aboutme-name"><?php echo esc_attr( $title ); ?></h2>
+    				<h2 class="youzify-aboutme-description"><?php echo esc_attr( $description ); ?></h2>
     			</div>
                 <?php endif; ?>
 

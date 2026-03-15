@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get Youzify Plugin Pages
@@ -517,6 +518,7 @@ function youzify_scripts_vars() {
         'gotit' => __( 'Got it!', 'youzify' ),
         'done' => __( 'Done!', 'youzify' ),
         'ops' => __( 'Oops!', 'youzify' ),
+        /* translators: %d: poll option number */
         'poll_option' => __( 'Option %d', 'youzify' ),
         'poll_option_empty' => __( 'Sorry, you need to choose at least one option.', 'youzify' ),
         'poll_already_voted' => __( 'Sorry, you already voted before.', 'youzify' ),
@@ -708,6 +710,7 @@ function youzify_pagination( $data_args ) {
     if ( $paginate_comments ) {
         echo sprintf( "<nav class='youzify-pagination' data-base='%1s' data-page='%3d' $pargs>" , $base, $offset, $cpage );
         echo '<span class="youzify-pagination-pages">';
+        /* translators: %1$d: current page number, %2$d: total number of pages */
         printf( __( 'Page %1$d of %2$d' , 'youzify' ), $cpage, $max_page );
         echo "</span><div class='comments-nav-links youzify-nav-links'>$paginate_comments</div></nav>";
     }
@@ -754,8 +757,10 @@ function youzify_get_bookmark_id( $user_id, $item_id, $item_type ) {
 
     global $wpdb, $Youzify_bookmark_table;
 
+    $safe_table = esc_sql( $Youzify_bookmark_table );
+
     return $wpdb->get_var( $wpdb->prepare(
-        "SELECT id FROM $Youzify_bookmark_table WHERE user_id = %d AND item_id = %d AND item_type = %s",
+        "SELECT id FROM `{$safe_table}` WHERE user_id = %d AND item_id = %d AND item_type = %s",
         $user_id, $item_id, $item_type
     ) );
 

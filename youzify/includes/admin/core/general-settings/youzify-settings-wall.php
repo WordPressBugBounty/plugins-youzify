@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Wall Settings.
@@ -468,6 +469,7 @@ function youzify_wall_settings() {
                 'std'   => isset( $unallowed_types[ $post_type ] ) ? 'off' : 'on',
                 'id'    => $post_type,
                 'title' => $name,
+                /* translators: %s: activity post type name */
                 'desc'  => sprintf( __( 'Enable activity %s posts', 'youzify' ), $name ),
             ), false, 'youzify_unallowed_activities'
         );

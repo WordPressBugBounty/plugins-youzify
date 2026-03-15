@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Fields {
 
@@ -862,7 +863,7 @@ class Youzify_Fields {
         	<?php if ( 'bottom' == $position ) : ?>
 				<div class="ukai-copyright">
             		<p>
-            			<?php _e( 'Designed & Developed By' ); ?>
+            			<?php _e( 'Designed & Developed By', 'youzify' ); ?>
             			<a href="https://www.kainelabs.com" target="_blank">KAINELABS.COM</a>
             		</p>
             	</div>

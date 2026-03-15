@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get Youzify Page Template.
@@ -85,16 +86,19 @@ function youzify_bbp_forum_topic_head( $args = array() ) {
     $time_since  = bbp_get_topic_freshness_link( $topic_id        );
 
     // Singular/Plural
+    /* translators: %s: number of voices in the topic */
     $voice_count = sprintf( _n( '%s voice', '%s voices', $vc_int, 'youzify' ), $voice_count );
 
     // Topic has replies
     $last_reply = bbp_get_topic_last_reply_id( $topic_id );
     if ( !empty( $last_reply ) ) {
         $last_updated_by = bbp_get_author_link( array( 'post_id' => $last_reply, 'size' => $r['size'] ) );
+        /* translators: %1$s: last updated by user link, %2$s: time since last update */
         $retstr          = sprintf( esc_html__( 'last updated by %1$s %2$s', 'youzify' ), $last_updated_by, $time_since );
 
     // Topic has no replies
     } elseif ( ! empty( $voice_count ) && ! empty( $reply_count ) ) {
+        /* translators: %1$s: voice count, %2$s: reply count */
         $retstr = sprintf( esc_html__( 'This topic contains %1$s and has %2$s.', 'youzify' ), $voice_count, $reply_count );
 
     // Topic has no replies and no voices
@@ -198,6 +202,7 @@ function youzify_bbp_single_forum_head_meta(  $args = '' ) {
 
     // Has replies
     if ( ! empty( $reply_count ) ) {
+        /* translators: %s: number of replies */
         $reply_text = sprintf( _n( '%s reply', '%s replies', $rc_int, 'youzify' ), $reply_count );
     }
 
@@ -209,6 +214,7 @@ function youzify_bbp_single_forum_head_meta(  $args = '' ) {
 
     // Forum has no last active data
     } else {
+        /* translators: %s: number of topics */
         $topic_text      = sprintf( _n( '%s topic', '%s topics', $tc_int, 'youzify' ), $topic_count );
     }
 
@@ -218,16 +224,20 @@ function youzify_bbp_single_forum_head_meta(  $args = '' ) {
         if ( !empty( $reply_count ) ) {
 
             if ( bbp_is_forum_category( $forum_id ) ) {
+                /* translators: %1$s: last updated by user link, %2$s: time since last update */
                 $retstr = sprintf( esc_html__( 'last updated by %1$s %2$s.', 'youzify' ),$last_updated_by, $time_since );
             } else {
+                /* translators: %1$s: last updated by user link, %2$s: time since last update */
                 $retstr = sprintf( esc_html__( 'last updated by %1$s %2$s.', 'youzify' ), $last_updated_by, $time_since );
             }
 
         } else {
 
             if ( bbp_is_forum_category( $forum_id ) ) {
+                /* translators: %1$s: last updated by user link, %2$s: time since last update */
                 $retstr = sprintf( esc_html__( 'last updated by %1$s %2$s.', 'youzify' ), $last_updated_by, $time_since );
             } else {
+                /* translators: %1$s: last updated by user link, %2$s: time since last update */
                 $retstr = sprintf( esc_html__( 'last updated by %1$s %2$s.', 'youzify' ), $last_updated_by, $time_since );
             }
         }

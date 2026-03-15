@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Lifter_Courses_Tab {
 
@@ -172,11 +173,11 @@ class Youzify_Lifter_Courses_Tab {
 								<div class="youzify-course-completion-meta">
 									
 									<?php if ( $display_completion_percent == 'on' ) : ?>
-									<div class="youzify-course-bar-percent"><?php echo sprintf( __( '<span class="youzify-course-meta-label">Completed:</span> <span class="youzify-course-meta-value">%d%%</span>', 'youzify' ), $course_progress ) ?></div>
+									<div class="youzify-course-bar-percent"><?php /* translators: %d: completion percentage */ echo sprintf( __( '<span class="youzify-course-meta-label">Completed:</span> <span class="youzify-course-meta-value">%d%%</span>', 'youzify' ), $course_progress ) ?></div>
 									<?php endif; ?>
 
 									<?php if ( $display_completion_steps == 'on' ) : ?>
-									<span class="youzify-course-progress-steps"><?php echo sprintf( __( '<span class="youzify-course-meta-label">Lessons:</span> <span class="youzify-course-meta-value">%s</span>', 'youzify' ), $this->calculateCompletedCourses( $course_progress, $total_lessons_count ) . '/' . $total_lessons_count ); ?>
+									<span class="youzify-course-progress-steps"><?php /* translators: %s: completed/total lessons count */ echo sprintf( __( '<span class="youzify-course-meta-label">Lessons:</span> <span class="youzify-course-meta-value">%s</span>', 'youzify' ), $this->calculateCompletedCourses( $course_progress, $total_lessons_count ) . '/' . $total_lessons_count ); ?>
 									</span>
 									<?php endif; ?>
 								
@@ -261,6 +262,7 @@ class Youzify_Lifter_Courses_Tab {
 		if ( $paginate_links ) {
 			echo sprintf( '<nav class="youzify-pagination" data-base="%1s">' , $base );
 			echo '<span class="youzify-pagination-pages">';
+			/* translators: %1$d: current page number, %2$d: total number of pages */
 			printf( __( 'Page %1$d of %2$d', 'youzify' ), $paged, $numpages );
 			echo "</span><div class='courses-nav-links youzify-nav-links'>$paginate_links</div></nav>";
 		}

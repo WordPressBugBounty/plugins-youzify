@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Captcha Settings
  */
@@ -16,6 +17,7 @@ function youzify_membership_captcha_settings()
             'msg_type' => 'info',
             'type' => 'msgBox',
             'id' => 'youzify_msgbox_membership_captcha',
+            /* translators: %s: reCAPTCHA site URL */
             'msg' => sprintf(__('To get your keys visit <strong><a href="%s">The reCAPTCHA Site</a></strong> and make sure to use the Recaptcha V2 or check the documentation.', 'youzify'), $captcha_url)
         )
     );
@@ -43,7 +45,7 @@ function youzify_membership_captcha_settings()
             'id' => 'youzify_signup_recaptcha_version',
             'type' => 'select',
             'opts' => array(
-                'v2' => __('reCAPTCHA v2', 'youzify '),
+                'v2' => __('reCAPTCHA v2', 'youzify'),
                 'v3' => __('reCAPTCHA v3', 'youzify')
             )
         )

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Basic_Infos {
 
@@ -481,8 +482,8 @@ class Youzify_Basic_Infos {
 
         $Youzify_Settings->get_field(
             array(
-                'title' => __( 'Current Username', 'bp-username-changer' ),
-                'desc'  => __( 'This is your current username', 'bp-username-changer' ),
+                'title' => __( 'Current Username', 'youzify' ),
+                'desc'  => __( 'This is your current username', 'youzify' ),
                 'id'    => 'current_user_name',
                 'no_options' => true,
                 'type'  => 'text',
@@ -493,8 +494,8 @@ class Youzify_Basic_Infos {
 
         $Youzify_Settings->get_field(
             array(
-                'title' => __( 'New Username', 'bp-username-changer' ),
-                'desc'  => __( 'Enter the new username of your choice', 'bp-username-changer' ),
+                'title' => __( 'New Username', 'youzify' ),
+                'desc'  => __( 'Enter the new username of your choice', 'youzify' ),
                 'id'    => 'new_user_name',
                 'no_options' => true,
                 'type'  => 'text'
@@ -519,15 +520,15 @@ class Youzify_Basic_Infos {
 
         if ( $is_inactive ) {
             $class= 'inactive';
-            $message = __( 'Activate your account', 'bp-deactivate-account' );
-            $status  = __( 'Deactivated', 'bp-deactivate-account' );
+            $message = __( 'Activate your account', 'youzify' );
+            $status  = __( 'Deactivated', 'youzify' );
             update_user_meta( bp_displayed_user_id(), '_bp_account_deactivator_status', 0 );
 
         } else {
 
             $class= 'active';
-            $message = __( 'Deactivate your account', 'bp-deactivate-account' );
-            $status  = __( 'Active', 'bp-deactivate-account' );
+            $message = __( 'Deactivate your account', 'youzify' );
+            $status  = __( 'Active', 'youzify' );
             update_user_meta( bp_displayed_user_id(), '_bp_account_deactivator_status', 1 );
         }
 
@@ -537,7 +538,7 @@ class Youzify_Basic_Infos {
 
         $Youzify_Settings->get_field(
             array(
-                'title' => __( 'Account Status', 'bp-deactivate-account' ),
+                'title' => __( 'Account Status', 'youzify' ),
                 'button_name' => 'bp_account_deactivator_update_settings',
                 'id'    => 'bp-account-deactivator-settings',
                 'form_name' => 'bp-account-deactivator-settings',
@@ -547,14 +548,14 @@ class Youzify_Basic_Infos {
             )
         );
 
-        echo '<div class="youzify-bp-deactivator-' . $class . '">' . __( 'Your current account status: ', 'bp-deactivate-account' ) . '<span>' . $status . '</span></div>';
+        echo '<div class="youzify-bp-deactivator-' . $class . '">' . __( 'Your current account status: ', 'youzify' ) . '<span>' . $status . '</span></div>';
 
         $Youzify_Settings->get_field(
             array(
-                'title' => __( 'Update Status', 'bp-deactivate-account' ),
-                'desc'  => __( 'If you select deactivate, you will be hidden from the users.', 'bp-deactivate-account' ),
+                'title' => __( 'Update Status', 'youzify' ),
+                'desc'  => __( 'If you select deactivate, you will be hidden from the users.', 'youzify' ),
                 'id'    => '_bp_account_deactivator_status',
-                'opts'  => array( '1' => __( 'Activate', 'bp-deactivate-account' ), '0' => __( 'Deactivate', 'bp-deactivate-account' )),
+                'opts'  => array( '1' => __( 'Activate', 'youzify' ), '0' => __( 'Deactivate', 'youzify' )),
                 'no_options' => true,
                 'type'  => 'radio',
             ), true

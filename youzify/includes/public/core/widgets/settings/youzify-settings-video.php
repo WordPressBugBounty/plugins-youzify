@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
 * Video Settings.
@@ -25,6 +26,7 @@ function youzify_video_widget_settings() {
     $Youzify_Settings->get_field(
         array(
             'title' => __( 'Video Url', 'youzify' ),
+            /* translators: %s: URL to list of supported video websites */
             'desc'  => sprintf( __( "Check the <a href='%s' target='_blank'>list of supported websites</a>", 'youzify' ), $supported_videos ),
             'id'    => 'youzify_wg_video_url',
             'type'  => 'text'

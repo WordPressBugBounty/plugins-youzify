@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Include MyCRED Files.
@@ -76,7 +77,7 @@ function youzify_mycred_leader_board_widget( $layout, $template, $user, $positio
 
 	if ( apply_filters( 'youzify_mycred_leader_board_widget', true ) ) {
 		$avatar = bp_core_fetch_avatar( array( 'item_id' => $user['ID'], 'type' => 'thumb' ) );
-		$layout = '<li class="youzify-leaderboard-item"><div class="youzify-leaderboard-avatar"><span class="youzify-leaderboard-position"># ' . $position .'</span>'. $avatar . '</div><div class="youzify-leaderboard-content"><a class="youzify-leaderboard-username" href="' . bp_members_get_user_url( $user['ID'] ).'">' . bp_core_get_user_displayname( $user['ID'] ) . '</a><div class="youzify-leaderboard-points">' . sprintf( _n( '%s ' . $data->core->core['name']['singular'], '%s ' . $data->core->core['name']['plural'], $user['cred'], 'youzify' ), $user['cred'] ) . '</div></li>';
+		$layout = '<li class="youzify-leaderboard-item"><div class="youzify-leaderboard-avatar"><span class="youzify-leaderboard-position"># ' . $position .'</span>'. $avatar . '</div><div class="youzify-leaderboard-content"><a class="youzify-leaderboard-username" href="' . bp_members_get_user_url( $user['ID'] ).'">' . bp_core_get_user_displayname( $user['ID'] ) . '</a><div class="youzify-leaderboard-points">' . $user['cred'] . ' ' . ( $user['cred'] == 1 ? $data->core->core['name']['singular'] : $data->core->core['name']['plural'] ) . '</div></li>';
 	}
 	return $layout;
 }

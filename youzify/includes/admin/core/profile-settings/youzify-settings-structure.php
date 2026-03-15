@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 require_once YOUZIFY_CORE . 'widgets/youzify-widgets/class-youzify-infos-boxes.php';
 

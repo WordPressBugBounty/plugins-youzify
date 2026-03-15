@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/KaineLabs
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 6.9
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -590,3 +590,6 @@ Security: Added stricter request sanitization and validation checks.
 Fix: Hardened internal request logic for better safety and stability.
 
 Improvement: General code cleanup and minor performance optimizations.
+
+= 1.3.7 - 2026-03-16 =
+Fix - Increased Plugin Security

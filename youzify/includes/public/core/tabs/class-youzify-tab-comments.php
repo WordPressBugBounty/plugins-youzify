@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Comments_Tab {
 
@@ -177,6 +178,7 @@ class Youzify_Comments_Tab {
 		if ( $paginate_comments ) {
 			echo sprintf( '<nav class="youzify-pagination" data-base="%1s">' , $base );
 			echo '<span class="youzify-pagination-pages">';
+			/* translators: %1$d: current page number, %2$d: total number of pages */
 			printf( __( 'Page %1$d of %2$d' , 'youzify' ), $cpage, $max_page );
 			echo "</span><div class='comments-nav-links youzify-nav-links'>$paginate_comments</div></nav>";
 		}

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Social Login Settings.
@@ -90,6 +91,7 @@ function youzify_membership_social_login_settings() {
         }
         $Youzify_Settings->get_field(
             array(
+            /* translators: %s: social network provider name */
             'title' => sprintf( __( '%s Settings', 'youzify' ), $provider ),
             'type'  => 'openBox'
             )
@@ -107,7 +109,9 @@ function youzify_membership_social_login_settings() {
 
         $Youzify_Settings->get_field(
             array(
+                /* translators: %s: application key type (e.g. ID, Key) */
                 'title' => sprintf( __( 'Application %s', 'youzify' ), $key ),
+                /* translators: %s: application key type (e.g. ID, Key) */
                 'desc'  => sprintf( __( 'Enter application %s', 'youzify' ), $key ),
                 'id'    => 'youzify_' . $lowercase_provider . '_app_key',
                 'type'  => 'text'
@@ -150,6 +154,7 @@ function get_provider_settings_note( $provider ) {
             'msg_type'  => 'info',
             'type'      => 'msgBox',
             'id'        => 'youzify_' . $provider . '_setup_steps',
+            /* translators: %s: social network provider name */
             'title'     => sprintf( __( 'How to get %s keys?', 'youzify' ), $provider ),
             'msg'       => implode( '<br>', $steps )
         )
@@ -170,13 +175,15 @@ function get_provider_instructions( $provider ) {
             $apps_url = 'https://developers.facebook.com/apps';
 
             // Get Steps.
-            $steps[] = sprintf( __( '1. Go to <a href="%1s">%2s</a>', 'youzify' ), $apps_url, $apps_url );
+            /* translators: %1s: apps page URL, %2s: apps page URL displayed as text */
+            $steps[] = sprintf( __( '1. Go to <a href="%1$s">%2$s</a>', 'youzify' ), $apps_url, $apps_url );
             $steps[] = __( '2. Create a new application by clicking "Create New App".', 'youzify' );
             $steps[] = __( '3. Fill out any required fields such as the application name and description.', 'youzify' );
             $steps[] = __( '4. Put your website domain in the site URL field.', 'youzify' );
             $steps[] = __( '5. Go to the Status & Review page.', 'youzify' );
             $steps[] = __( '6. Enable <strong>"Do you want to make this app and all its live features available to the general public?"</strong>.', 'youzify' );
             $steps[] = __( '7. Facebook Login > Settings > Valid OAuth redirect URIs:', 'youzify' );
+            /* translators: %s: OAuth redirect URL */
             $steps[] = sprintf( __( '8. OAuth URL : <strong><a>%s</a></strong>', 'youzify' ), $auth_url );
             $steps[] = __( '9. Go to dashboard and get your <strong>App ID</strong> and <strong>App Secret</strong>', 'youzify' );
 
@@ -189,15 +196,18 @@ function get_provider_instructions( $provider ) {
             $auth_url = home_url( '/youzify-auth/social-login/Twitter' );
 
             // Get Note
-            $steps[] = __( '<strong><a>Note:</a> Twitter do not provide their users email address, to make that happen you have to submit your application for review untill that time we will request the email from users while registration.</strong>', 'youzify' ) . '<br>';
+            $steps[] = '<strong><a>' . __( 'Note:', 'youzify' ) . '</a> ' . __( 'Twitter do not provide their users email address, to make that happen you have to submit your application for review untill that time we will request the email from users while registration.', 'youzify' ) . '</strong><br>';
 
             // Get Steps.
-            $steps[] = sprintf( __( '1. Go to <a href="%1s">%2s</a>', 'youzify' ), $apps_url, $apps_url );
+            /* translators: %1s: apps page URL, %2s: apps page URL displayed as text */
+            $steps[] = sprintf( __( '1. Go to <a href="%1$s">%2$s</a>', 'youzify' ), $apps_url, $apps_url );
             $steps[] = __( '2. Create a new application by clicking "Create New App".', 'youzify' );
             $steps[] = __( '3. Fill out any required fields such as the application name and description.', 'youzify' );
             $steps[] = __( '4. Put your website domain in the Site URL field.', 'youzify' );
             $steps[] = __( "5. Provide URL's below as the Callback URL's for your application respecting the same order.", 'youzify' );
+            /* translators: %s: first callback URL */
             $steps[] = sprintf( __( '5.1 First Callback URL: <strong><a>%s</a></strong>', 'youzify' ), home_url() );
+            /* translators: %s: second callback URL */
             $steps[] = sprintf( __( '5.2 Second Callback URL: <strong><a>%s</a></strong>', 'youzify' ), $auth_url );
             $steps[] = __( '6. Register Settings and get Consumer Key and Secret.', 'youzify' );
 
@@ -209,13 +219,15 @@ function get_provider_instructions( $provider ) {
             $apps_url = 'https://code.google.com/apis/console/';
             $auth_url = home_url( '/youzify-auth/social-login/Google' );
             // Get Steps.
-            $steps[] = sprintf( __( '1. Go to <a href="%1s">%2s</a>', 'youzify' ), $apps_url, $apps_url );
+            /* translators: %1s: apps page URL, %2s: apps page URL displayed as text */
+            $steps[] = sprintf( __( '1. Go to <a href="%1$s">%2$s</a>', 'youzify' ), $apps_url, $apps_url );
             $steps[] = __( '2. Create a new application by clicking "Create a new project".', 'youzify' );
             $steps[] = __( '3. Go to API Access under API Project.', 'youzify' );
             $steps[] = __( '4. After that click on Create an OAuth 2.0 client ID to create a new application.', 'youzify' );
             $steps[] = __( '5. A pop-up named "Create Client ID" will appear, fill out any required fields such as the application name and description and Click on Next.', 'youzify' );
             $steps[] = __( '6. On the popup set Application type to Web application and switch to advanced settings by clicking on ( more options ) .', 'youzify' );
             $steps[] = __( '7. Provide URL below as the Callback URL for your application.', 'youzify' );
+            /* translators: %s: callback URL */
             $steps[] = sprintf( __( '8. Callback URL: <strong><a>%s</a></strong>', 'youzify' ), $auth_url );
             $steps[] = __( '9. Once you have registered, copy the created application credentials (Client ID and Secret ) .', 'youzify' );
             $steps[] = __( "<br><strong style='color: red;'>Notice : </strong> if google did not approved your application because of the sign in button design you can add this code snippet to the file <strong>'bp-custom.php'</strong> in the path <strong>'wp-content/plugins'</strong> : <a href='https://gist.github.com/KaineLabs/cc8d2479f59f09e04450e8b55ca8da51'>New Google Sign in Button</a>.<br><strong>Ps</strong>: if you didn't find the file 'bp-custom.php', just create a new one !", 'youzify' );
@@ -229,10 +241,12 @@ function get_provider_instructions( $provider ) {
             $auth_url = home_url( '/youzify-auth/social-login/LinkedIn' );
 
             // Get Steps.
-            $steps[] = sprintf( __( '1. Go to <a href="%1s">%2s</a>', 'youzify' ), $apps_url, $apps_url );
+            /* translators: %1s: apps page URL, %2s: apps page URL displayed as text */
+            $steps[] = sprintf( __( '1. Go to <a href="%1$s">%2$s</a>', 'youzify' ), $apps_url, $apps_url );
             $steps[] = __( '2. Create a new application by clicking "Create Application".', 'youzify' );
             $steps[] = __( '3. Fill out any required fields such as the application name and description.', 'youzify' );
             $steps[] = __( '4. Put the below URL in the OAuth 2.0 Authorized Redirect URLs:', 'youzify' );
+            /* translators: %s: redirect URL */
             $steps[] = sprintf( __( '5. Redirect URL: <strong><a>%s</a></strong>', 'youzify' ), $auth_url );
             $steps[] = __( '6. Once you have registered, copy the created application credentials ( Client ID and Secret ) .', 'youzify' );
             return $steps;
@@ -244,11 +258,13 @@ function get_provider_instructions( $provider ) {
             $auth_url = home_url( '/youzify-auth/social-login/Instagram' );
 
             // Get Note
-            $steps[] = __( '<strong><a>Note:</a> Instagram do not provide their users email address, to make that happen you have to submit your application for review untill that time we will request the email from users while registration.</strong>', 'youzify' ) . '<br>';
+            $steps[] = '<strong><a>' . __( 'Note:', 'youzify' ) . '</a> ' . __( 'Instagram do not provide their users email address, to make that happen you have to submit your application for review untill that time we will request the email from users while registration.', 'youzify' ) . '</strong><br>';
 
             // Get Steps.
+            /* translators: %1s: Instagram setup tutorial URL */
             $steps[] = sprintf( __( '1. Check this topic on <a href="%1s">How to Setup Instagram Social Login</a> for a detailed steps.', 'youzify' ), $apps_url );
             $steps[] = __( '2. Put the below URL as OAuth redirect_uri Authorized Redirect URLs:', 'youzify' );
+            /* translators: %s: redirect URL */
             $steps[] = sprintf( __( '3. Redirect URL: <strong><a>%s</a></strong>', 'youzify' ), $auth_url );
 
             return $steps;
@@ -259,9 +275,11 @@ function get_provider_instructions( $provider ) {
             $apps_url = 'https://dev.twitch.tv/console/apps/create';
             $auth_url = home_url( '/youzify-auth/social-login/TwitchTV' );
             // Get Steps.
-            $steps[] = sprintf( __( '1. Go to <a href="%1s">%2s</a>', 'youzify' ), $apps_url, $apps_url );
+            /* translators: %1s: apps page URL, %2s: apps page URL displayed as text */
+            $steps[] = sprintf( __( '1. Go to <a href="%1$s">%2$s</a>', 'youzify' ), $apps_url, $apps_url );
             $steps[] = __( '2. Fill out any required fields such as the application name and Category.', 'youzify' );
             $steps[] = __( '3. Put the below URL as OAuth redirect_uri  Authorized Redirect URLs:', 'youzify' );
+            /* translators: %s: redirect URL */
             $steps[] = sprintf( __( 'Redirect URL: <strong><a>%s</a></strong>', 'youzify' ), $auth_url );
             $steps[] = __( '4. Once you have registered, copy the created application credentials ( Client ID and Secret ) .', 'youzify' );
 

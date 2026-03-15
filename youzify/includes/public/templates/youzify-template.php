@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /*
  * Template Name: Youzify Template
  * Description: Youzify Plugin Pages Template.

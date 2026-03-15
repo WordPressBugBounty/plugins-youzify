@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Group {
 
@@ -76,6 +77,7 @@ class Youzify_Group {
 			if ( '0' != $requests_nbr ) {
 				// Create 'Requests' Subnav.
 				bp_core_new_subnav_item( array(
+						/* translators: %s: number of membership requests */
 						'name' => sprintf( __( 'Requests %s', 'youzify' ), '<span>' . number_format( $requests_nbr ) . '</span>' ),
 						'parent_slug' => $group->slug,
 						'slug' => 'membership-requests',

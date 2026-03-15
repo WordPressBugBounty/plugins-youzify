@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Learndash_Integration {
 
@@ -169,6 +170,7 @@ class Youzify_Learndash_Integration {
 	    $user_link = bp_core_get_userlink( $post->post_author );
 	    
 	    // Get Activity Action.
+	    /* translators: %s: user profile link */
 	    $action = apply_filters( 'youzify_new_learndash_course_action', sprintf( __( '%s added a new course', 'youzify' ), $user_link ), $post->ID );
 
 	    // record the activity	``	
@@ -201,6 +203,7 @@ class Youzify_Learndash_Integration {
 	    $user_link = bp_core_get_userlink( $args['user']->ID );
 
 	    // Get Activity Action.
+	    /* translators: %s: user profile link */
 	    $action = apply_filters( 'youzify_new_learndash_course_action', sprintf( __( '%s earned a new certificate', 'youzify' ), $user_link ), $args['course']->ID );
 
 	    // record the activity	``	
@@ -225,6 +228,7 @@ class Youzify_Learndash_Integration {
 	    $user_link = bp_core_get_userlink( $args['user_id'] );
 	    
 	    // Get Activity Action.
+	    /* translators: %s: user profile link */
 	    $action = apply_filters( 'youzify_new_wc_product_action', sprintf( __( '%s enrolled in a new course', 'youzify' ), $user_link ), $args['course_id'] );
 
 	    // record the activity	``	

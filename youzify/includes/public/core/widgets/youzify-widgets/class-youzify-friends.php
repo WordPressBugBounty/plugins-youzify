@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Profile_Friends_Widget {
 
@@ -67,7 +68,7 @@ class Youzify_Profile_Friends_Widget {
 
             <?php if ( $friends_nbr > $max_friends ) : ?>
                 <?php $more_nbr = $friends_nbr - $max_friends; ?>
-                <?php $more_title = ( 'list' == $widget_layout ) ? sprintf( __( 'Show All Friends ( %s )', 'youzify' ), $friends_nbr ) : '+' . $more_nbr; ?>
+                <?php /* translators: %s: total number of friends */ $more_title = ( 'list' == $widget_layout ) ? sprintf( __( 'Show All Friends ( %s )', 'youzify' ), $friends_nbr ) : '+' . $more_nbr; ?>
                 <div class="youzify-more-items" <?php if ( 'avatars' == $widget_layout ) echo 'data-youzify-tooltip="' . __( 'Show All Friends', 'youzify' )  . '"'; ?>>
                     <a href="<?php echo bp_members_get_user_url( bp_displayed_user_id() ) . bp_get_friends_slug();?>"><?php echo $more_title; ?></a>
                 </div>

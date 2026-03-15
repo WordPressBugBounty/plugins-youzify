@@ -1,4 +1,5 @@
-<?php if ( bp_has_groups() ) : while ( bp_groups() ) : bp_the_group(); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit; if ( bp_has_groups() ) : while ( bp_groups() ) : bp_the_group(); ?>
 
 <?php do_action( 'youzify_group_before_group' ); ?>
 <div id="youzify">

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Register Notification CallBack
@@ -64,7 +65,9 @@ function youzify_format_notifications( $action, $item_id, $secondary_item_id, $t
 
             if ( 1 == $total_items ) {
 
+                /* translators: %s: display name of the user who liked the post */
                 $custom_text = sprintf( __( '%s liked your post', 'youzify' ), bp_core_get_user_displayname( $secondary_item_id ) );
+                /* translators: %s: display name of the user who liked the post */
                 $custom_title = sprintf( __( '%s liked your post', 'youzify' ), bp_core_get_user_displayname( $secondary_item_id ) );
                 $activity_link      = bp_activity_get_permalink( $item_id ) ;
 
@@ -72,7 +75,9 @@ function youzify_format_notifications( $action, $item_id, $secondary_item_id, $t
 
             } else {
 
+                /* translators: %d: number of users who liked the post */
                 $custom_text = sprintf( __( '%d more users liked your post', 'youzify' ), $total_items );
+                /* translators: %d: number of users who liked the post */
                 $custom_title = sprintf( __( '%d more users liked your post', 'youzify' ), $total_items );
 
                 if ( bp_is_active( 'notifications' ) ) {
@@ -100,14 +105,17 @@ function youzify_format_notifications( $action, $item_id, $secondary_item_id, $t
             // Init Vars.
             $link = wp_nonce_url( add_query_arg( array( 'action' => 'youzify_new_share_mark_read', 'activity_id' => $item_id ), bp_activity_get_permalink( $item_id ) ), 'youzify_new_share_mark_read_' . $item_id );
 
+            /* translators: %s: logged-in username */
             $title  = sprintf( __( '@%s Shares', 'youzify' ), bp_get_loggedin_user_username() );
 
             $amount = 'single';
 
             if ( (int) $total_items > 1 ) {
+                /* translators: %1$d: number of new post shares */
                 $text   = sprintf( __( 'You have %1$d new post shares', 'youzify' ), (int) $total_items );
                 $amount = 'multiple';
             } else {
+                /* translators: %1$s: display name of the user who shared */
                 $text = sprintf( __( '%1$s shared your post', 'youzify' ), bp_core_get_user_displayname( $secondary_item_id ) );
             }
 
@@ -124,14 +132,17 @@ function youzify_format_notifications( $action, $item_id, $secondary_item_id, $t
             // Init Vars.
             $link = wp_nonce_url( add_query_arg( array( 'action' => 'youzify_new_tag_mark_read', 'activity_id' => $item_id ), bp_activity_get_permalink( $item_id ) ), 'youzify_new_tag_mark_read_' . $item_id );
 
+            /* translators: %s: logged-in username */
             $title  = sprintf( __( '@%s Tags', 'youzify' ), bp_get_loggedin_user_username() );
 
             $amount = 'single';
 
             if ( (int) $total_items > 1 ) {
+                /* translators: %1$d: number of new tags */
                 $text   = sprintf( __( 'You have %1$d new tags', 'youzify' ), (int) $total_items );
                 $amount = 'multiple';
             } else {
+                /* translators: %1$s: display name of the user who tagged */
                 $text = sprintf( __( '%1$s tagged you', 'youzify' ), bp_core_get_user_displayname( $secondary_item_id ) );
             }
 

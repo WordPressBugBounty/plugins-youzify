@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Profile_Quote_Widget {
 
@@ -36,7 +37,7 @@ class Youzify_Profile_Quote_Widget {
             <div class="youzify-quote-main-content">
                 <div class="youzify-quote-icon"><i class="fas fa-quote-right"></i></div>
                 <blockquote><?php echo nl2br( $quote_txt ); ?></blockquote>
-                <h3 class="youzify-quote-owner"><?php esc_attr_e( get_the_author_meta( 'youzify_wg_quote_owner', $user_id ) ); ?></h3>
+                <h3 class="youzify-quote-owner"><?php echo esc_attr( get_the_author_meta( 'youzify_wg_quote_owner', $user_id ) ); ?></h3>
             </div>
         </div>
 

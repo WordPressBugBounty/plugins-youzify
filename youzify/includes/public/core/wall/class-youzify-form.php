@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Activity Form
@@ -439,6 +440,7 @@ class Youzify_Activity_Form {
 		}
 
 		// Record this in activity streams.
+		/* translators: %1$s: user profile link, %2$s: group link */
 		$activity_action  = sprintf( __( '%1$s posted an update in the group %2$s', 'youzify' ), bp_core_get_userlink( $user_id ), '<a href="' . bp_get_group_url( $bp->groups->current_group ) . '">' . esc_attr( $bp->groups->current_group->name ) . '</a>' );
 		$activity_content = $content;
 
@@ -503,9 +505,11 @@ class Youzify_Activity_Form {
 
 		// Save Post Tagged Users.
 		if ( isset( $_POST['checkin_place_id'] ) && ! empty( $_POST['checkin_place_id'] ) ) {
-			bp_activity_update_meta( $activity_id, 'youzify_checkin_place_id', $_POST['checkin_place_id'] );
-			bp_activity_update_meta( $activity_id, 'youzify_checkin_label', $_POST['checkin_label'] );
-			bp_activity_update_meta( $activity_id, 'youzify_checkin', array( 'place_id' => $_POST['checkin_place_id'], 'label' => $_POST['checkin_label'] ) );
+			$place_id = sanitize_text_field( $_POST['checkin_place_id'] );
+			$label = sanitize_text_field( $_POST['checkin_label'] );
+			bp_activity_update_meta( $activity_id, 'youzify_checkin_place_id', $place_id );
+			bp_activity_update_meta( $activity_id, 'youzify_checkin_label', $label );
+			bp_activity_update_meta( $activity_id, 'youzify_checkin', array( 'place_id' => $place_id, 'label' => $label ) );
 			do_action( 'youzify_after_activity_checkin_save', $activity_id );
 		}
 

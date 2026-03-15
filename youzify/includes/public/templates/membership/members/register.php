@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * BuddyPress - Members Register
  * array( 'form_type' => 'signup', 'form_action' => 'signup' )

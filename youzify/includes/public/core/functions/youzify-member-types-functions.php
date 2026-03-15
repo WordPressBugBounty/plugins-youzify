@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Replace Member Type Field Value
@@ -52,9 +53,10 @@ function youzify_get_xprofile_member_types_field_id() {
         $bp = buddypress();
 
         $table_name = isset( $bp->profile->table_name_fields ) ? $bp->profile->table_name_fields : $wpdb->prefix . 'bp_xprofile_fields';
+        $safe_table = esc_sql( $table_name );
 
         // Get Fields ID'S.
-        $id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $table_name WHERE type = %s", 'member_types' ) );
+        $id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM `{$safe_table}` WHERE type = %s", 'member_types' ) );
 
         wp_cache_set( 'member_types_field_id', $id, 'bp_xprofile' );
     }

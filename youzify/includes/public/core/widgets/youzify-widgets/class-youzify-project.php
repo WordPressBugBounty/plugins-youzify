@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Profile_Project_Widget {
 
@@ -50,7 +51,7 @@ class Youzify_Profile_Project_Widget {
     			<div class="youzify-project-inner-content">
     				<div class="youzify-project-head">
 
-                        <a class="youzify-project-type"><?php esc_attr_e( get_the_author_meta( 'youzify_wg_project_type', $user_id ) ); ?></a>
+                        <a class="youzify-project-type"><?php echo esc_attr( get_the_author_meta( 'youzify_wg_project_type', $user_id ) ); ?></a>
 
                         <?php if ( $project_title ) : ?>
     					   <h2 class="youzify-project-title"><?php echo $project_title; ?></h2>

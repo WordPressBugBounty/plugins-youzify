@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Check is User Reviewed.
@@ -424,11 +425,11 @@ function youzify_star_rating( $args = array() ) {
 
     if ( $r['number'] ) {
         /* translators: 1: The rating, 2: The number of ratings */
-        $format = _n( '%1$s rating based on %2$s rating', '%1$s rating based on %2$s ratings', $r['number'] );
+        $format = _n( '%1$s rating based on %2$s rating', '%1$s rating based on %2$s ratings', $r['number'], 'youzify' );
         $title = sprintf( $format, number_format_i18n( $rating, 1 ), number_format_i18n( $r['number'] ) );
     } else {
         /* translators: 1: The rating */
-        $title = sprintf( __( '%s Rating' ), number_format_i18n( $rating, 1 ) );
+        $title = sprintf( __( '%s Rating', 'youzify' ), number_format_i18n( $rating, 1 ) );
     }
 
     $output = '<div class="youzify-star-rating">';
@@ -534,7 +535,7 @@ function youzify_get_user_reviews( $args = null ) {
 
 		<?php if ( $args['show_more'] == true && $reviews_count > 0 && $args['per_page'] <= $reviews_count ) : ?>
 			<?php $reviews_slug = youzify_reviews_tab_slug();  ?>
-			<a href="<?php echo youzify_get_user_profile_page( $reviews_slug ); ?>" class="youzify-rating-show-more"><?php echo sprintf( __( 'Show All Ratings ( %s )', 'youzify' ), $reviews_count ); ?></a>
+			<a href="<?php echo youzify_get_user_profile_page( $reviews_slug ); ?>" class="youzify-rating-show-more"><?php /* translators: %s: total number of ratings */ echo sprintf( __( 'Show All Ratings ( %s )', 'youzify' ), $reviews_count ); ?></a>
 		<?php endif; ?>
 
 	</div>
@@ -595,6 +596,7 @@ function youzify_reviews_pagination( $total_items, $per_page = null ) {
 	if ( $paginate_comments ) {
 		echo sprintf( '<nav class="youzify-pagination" data-base="%1s" data-per-page="%2s">' , $base, $per_page );
 		echo '<span class="youzify-pagination-pages">';
+		/* translators: %1$d: current page number, %2$d: total number of pages */
 		printf( __( 'Page %1$d of %2$d' , 'youzify' ), $cpage, $max_page );
 		echo "</span><div class='youzify-reviews-nav-links youzify-nav-links'>$paginate_comments</div></nav>";
 	}
@@ -640,12 +642,12 @@ function youzify_get_ratings_details( $args = null ) {
 
 		<?php if ( $args['show_rate'] == true ) :?>
 		<?php echo $args['separator']; ?>
-			<div class="youzify-user-ratings-rate"><?php echo sprintf( __( '%s out of 5', 'youzify' ) , $user_rate ); ?></div>
+			<div class="youzify-user-ratings-rate"><?php /* translators: %s: user rating value */ echo sprintf( __( '%s out of 5', 'youzify' ) , $user_rate ); ?></div>
 		<?php endif; ?>
 
 		<?php if ( $args['show_total'] == true ) :  ?>
 			<?php $reviews_count = $youzify_query->get_user_reviews_count( $args['user_id'] ); echo $args['separator']; ?>
-			<div class="youzify-user-ratings-total"><?php echo sprintf( _n( '%s Rating', '%s Ratings', $reviews_count, 'youzify' ), number_format_i18n( $reviews_count ) ); ?></div>
+			<div class="youzify-user-ratings-total"><?php /* translators: %s: total number of ratings */ echo sprintf( _n( '%s Rating', '%s Ratings', $reviews_count, 'youzify' ), number_format_i18n( $reviews_count ) ); ?></div>
 		<?php endif; ?>
 
 	</div>

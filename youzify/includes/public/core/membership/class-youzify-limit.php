@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Membership_Limit {
 
@@ -211,6 +212,7 @@ class Youzify_Membership_Limit {
 		$remaining = max( ( $allowed_retries - ( $retries[ $user_ip ]['retries'] % $allowed_retries ) ), 0 );
 
 		// Add Error
+		/* translators: %d: number of login attempts remaining */
 		return sprintf( _n( '%d attempt remaining.', '%d attempts remaining.', $remaining, 'youzify' ), $remaining );
 
 	}
@@ -241,7 +243,8 @@ class Youzify_Membership_Limit {
 		if ( $lockout_time > 60 ) {
 			$lockout_time = ceil( $lockout_time / 60 );
 			$msg[] = sprintf(
-				_n(
+				/* translators: %d: number of hours to wait */
+			_n(
 					'Please try again in %d hour.',
 					'Please try again in %d hours.', $lockout_time, 'youzify'
 				),
@@ -249,7 +252,8 @@ class Youzify_Membership_Limit {
 			);
 		} else {
 			$msg[] = sprintf(
-				_n(
+				/* translators: %d: number of minutes to wait */
+			_n(
 					'Please try again in %d minute.',
 					'Please try again in %d minutes.', $lockout_time, 'youzify'
 					),

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Add Groups Directory Header
@@ -81,20 +82,20 @@ function youzify_get_group_statistics_data( $group_id ) {
 
         <?php if ( 'on' == youzify_option( 'youzify_enable_gd_group_posts_statistics', 'on' ) ) : ?>
             <?php $posts_nbr = youzify_get_group_total_posts_count( $group_id ); ?>
-        <div class="youzify-data-item youzify-data-posts" data-youzify-tooltip="<?php echo sprintf( _n( '%s Post', '%s Posts', $posts_nbr, 'youzify' ), $posts_nbr ); ?>">
+        <div class="youzify-data-item youzify-data-posts" data-youzify-tooltip="<?php /* translators: %s: number of posts */ echo sprintf( _n( '%s Post', '%s Posts', $posts_nbr, 'youzify' ), $posts_nbr ); ?>">
             <span class="dashicons dashicons-edit"></span>
         </div>
         <?php endif; ?>
 
         <?php if ( 'on' == youzify_option( 'youzify_enable_gd_group_activity_statistics', 'on' ) ) : ?>
-        <div class="youzify-data-item youzify-data-activity" data-youzify-tooltip="<?php printf( __( 'Active %s', 'youzify' ), bp_get_group_last_active() ); ?>">
+        <div class="youzify-data-item youzify-data-activity" data-youzify-tooltip="<?php /* translators: %s: time since last activity */ printf( __( 'Active %s', 'youzify' ), bp_get_group_last_active() ); ?>">
             <span class="dashicons dashicons-clock"></span>
         </div>
         <?php endif; ?>
 
         <?php if ( 'on' == youzify_option( 'youzify_enable_gd_group_members_statistics', 'on' ) ) : ?>
         <?php $members_count = groups_get_total_member_count( $group_id ); ?>
-        <div class="youzify-data-item youzify-data-members" data-youzify-tooltip="<?php echo sprintf( _n( '%s Member', '%s Members', $members_count, 'youzify' ), bp_core_number_format( $members_count ) ); ?>">
+        <div class="youzify-data-item youzify-data-members" data-youzify-tooltip="<?php /* translators: %s: number of group members */ echo sprintf( _n( '%s Member', '%s Members', $members_count, 'youzify' ), bp_core_number_format( $members_count ) ); ?>">
             <span class="dashicons dashicons-groups"></span>
         </div>
         <?php endif; ?>

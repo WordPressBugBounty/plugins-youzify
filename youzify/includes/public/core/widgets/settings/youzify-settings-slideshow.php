@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Slideshow Settings.
@@ -61,7 +62,7 @@ function youzify_slideshow_widget_settings() {
                         <div class="youzify-photo-preview" style="background-image: url(<?php echo wp_get_attachment_image_url( $slide['image'], 'youzify-thumbnail' ); ?>);"></div>
                         <label for="youzify_slideshow_<?php echo $i; ?>" class="youzify-upload-photo" ><?php _e( 'Upload Photo', 'youzify' ); ?></label>
                         <input id="youzify_slideshow_<?php echo $i; ?>" type="file" name="youzify_slideshow_<?php echo $i; ?>" class="youzify_upload_file" accept="image/*" />
-                        <input type="hidden" name="youzify_slideshow[<?php echo $i; ?>][image]" value="<?php esc_attr_e( $slide['image'] ); ?>" class="youzify-photo-url">
+                        <input type="hidden" name="youzify_slideshow[<?php echo $i; ?>][image]" value="<?php echo esc_attr( $slide['image'] ); ?>" class="youzify-photo-url">
                     </div>
                 </div>
             </div>

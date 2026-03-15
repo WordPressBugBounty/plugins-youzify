@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get User Balance
@@ -163,7 +164,7 @@ function youzify_get_md_gamipress_statistics( $user_id ) {
 
     <?php if ( 'on' == youzify_option( 'youzify_enable_md_user_points_statistics', 'on' ) ) :  ?>
        	<?php $points = mycred_get_users_balance( $user_id ); ?>
-        <a href="<?php echo youzify_get_user_profile_page( 'mycred-history', $user_id ); ?>" class="youzify-data-item youzify-data-points" data-youzify-tooltip="<?php echo sprintf( _n( '%s Point', '%s Points', $points, 'youzify' ), $points ); ?>">
+        <a href="<?php echo youzify_get_user_profile_page( 'mycred-history', $user_id ); ?>" class="youzify-data-item youzify-data-points" data-youzify-tooltip="<?php /* translators: %s: number of points */ echo sprintf( _n( '%s Point', '%s Points', $points, 'youzify' ), $points ); ?>">
             <span class="dashicons dashicons-awards"></span>
         </a>
     <?php endif; ?>

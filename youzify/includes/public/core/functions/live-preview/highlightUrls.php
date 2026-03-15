@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Copyright (c) 2015 Leonardo Cardoso (http://leocardz.com)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)

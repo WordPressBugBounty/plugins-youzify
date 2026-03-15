@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get User Badges
@@ -64,6 +65,7 @@ function youzify_mycred_get_badges_more_button( $user_id = null, $badges_nbr = n
     if ( $badges_nbr > $max_badges ) :
 
     	$more_nbr = $badges_nbr - $max_badges;
+    	/* translators: %s: total number of badges */
     	$more_title = ( 'text' == $more_type ) ? sprintf( __( 'Show All Badges ( %s )', 'youzify' ), $badges_nbr ) : '+' . $more_nbr; ?>
         <div class="youzify-badge-item youzify-more-items youzify-user-badges-more-<?php echo $more_type ?>" <?php if ( 'box' == $more_type ) echo 'data-youzify-tooltip="' . __( 'Show All Badges', 'youzify' )  . '"'; ?>><a href="<?php echo bp_members_get_user_url( $user_id ) . youzify_mycred_badges_slug();?>"><?php echo $more_title; ?></a></div>
     <?php endif;
@@ -128,6 +130,7 @@ function youzify_get_mycred_badges_page_content() {
 
 	$username = ! empty( $first_name ) ? $first_name : bp_members_get_user_slug( $user_id );
 
+	/* translators: %1s: user display name */
 	$page_title = bp_is_my_profile() ? __( 'My Badges', 'youzify' ) : sprintf( __( "%1s's Badges", 'youzify' ), $username );
 
 	?>
@@ -136,7 +139,7 @@ function youzify_get_mycred_badges_page_content() {
 		<div class="youzify-tab-title-icon"><i class="fas fa-trophy"></i></div>
 		<div class="youzify-tab-title-content">
 			<h2><?php echo $page_title; ?></h2>
-			<span><?php echo sprintf( _n( '%s Badge', '%s Badges', $badges_total, 'youzify' ), $badges_total ); ?></span>
+			<span><?php /* translators: %s: total number of badges */ echo sprintf( _n( '%s Badge', '%s Badges', $badges_total, 'youzify' ), $badges_total ); ?></span>
 		</div>
 	</div>
 

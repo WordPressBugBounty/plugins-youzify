@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Disable Gravatars
@@ -995,7 +996,7 @@ function youzify_pro_version_banner( $show_button = true ) {
     white-space: nowrap!important;
     ">
     <img class="position-absolute" style="left: 50%;top: 50%;transform: translate(-50%, -50%);width: 110%;position: absolute;height:100%;" alt="prop image" src="<?php echo YOUZIFY_ADMIN_ASSETS . 'images/yellow-highlight.svg'; ?>"><span class="position-relative text-nowrap" style="background-color: transparent;letter-spacing: 0px;position: relative;color: #fff;"><span class="position-relative" style="padding:0 15px;color: #000;font-size: 25px;    font-weight: 600;
-    ">ATTENTION: [<span style="color:#ff1e00;"><?php echo sprintf( _n( '%d Day Left', '%d Days Left', $daysleft, 'youzify' ), $daysleft ); ?></span>] Next Youzify Pro Price Increase is by <?php echo $last_date; ?></span></span><span style="background-color: transparent; letter-spacing: 0px; white-space: pre-wrap;"></span></span></div>
+    ">ATTENTION: [<span style="color:#ff1e00;"><?php /* translators: %d: number of days remaining */ echo sprintf( _n( '%d Day Left', '%d Days Left', $daysleft, 'youzify' ), $daysleft ); ?></span>] Next Youzify Pro Price Increase is by <?php echo $last_date; ?></span></span><span style="background-color: transparent; letter-spacing: 0px; white-space: pre-wrap;"></span></span></div>
 
     <!-- <div class="yzp-head-tag">A TRULLY LIMITED TIME OFFER</div> -->
     <div class="yzp-head-title" style="color: #fff952;">Due to the increased value in our premium version the price will be increased by <?php echo $last_date; ?>!</div>

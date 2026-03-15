@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Youzify_Membership_Social {
 
@@ -721,6 +722,7 @@ class Youzify_Membership_Social {
 			'bp-resend-activation'
 		);
 
+		/* translators: %s: resend activation email URL */
 		$resend_string = apply_filters( 'youzify_get_inactive_account_message_resend_msg', '<br />' . sprintf( __( 'If you have not received an email yet, <a href="%s">click here to resend it</a>.', 'youzify' ), esc_url( $resend_url ) ) );
 
 		return $inactive_account_msg . $resend_string;

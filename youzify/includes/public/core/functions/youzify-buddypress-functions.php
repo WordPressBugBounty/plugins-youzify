@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Change Buddypress Assets URL
@@ -286,7 +287,7 @@ function youzify_delete_activity() {
     do_action( 'bp_activity_before_action_delete_activity', $activity->id, $activity->user_id );
 
     if ( ! bp_activity_delete( array( 'id' => $activity->id, 'user_id' => $activity->user_id ) ) ) {
-        exit( '-1<div id="message" class="error bp-ajax-message"><p>' . esc_html__( 'There was a problem when deleting. Please try again.', 'buddypress' ) . '</p></div>' );
+        exit( '-1<div id="message" class="error bp-ajax-message"><p>' . esc_html__( 'There was a problem when deleting. Please try again.', 'youzify' ) . '</p></div>' );
     }
 
     /** This action is documented in bp-activity/bp-activity-actions.php */
